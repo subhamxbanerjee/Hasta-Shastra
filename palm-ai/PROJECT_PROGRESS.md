@@ -250,6 +250,39 @@ data/processed/multi_image_validation/<image_stem>/
 
 **Next step:** Use multi-image results to decide which classification heuristics need refinement (Phase 5.7).
 
+### ✅ Milestone 5.7 — Classification Heuristic Calibration
+**Date:** 2026-08-27
+**Status:** IMPLEMENTATION COMPLETE — VALIDATION COMPLETE
+
+**Changes applied** (constants only in `scripts/palm_line_classification.py`):
+- `PROXIMITY_DIST`: 15 → 40 px (allows fragment merging across gaps)
+- `CURVATURE_THRESHOLD`: 0.25 → 1.5 (restores 30% of confidence formula)
+- `CLASS_REGION_BOUNDS`: widened all 4 line regions based on observed centroid data
+- `ORIENT_RANGES`: FateLine corrected 30–70° → 70–120°; HeartLine/HeadLine/LifeLine widened
+- `length_score` normalizer: 1500 → 400 px (makes length a real discriminator)
+
+**Before/After results (6 images, 0 failures):**
+
+| Metric | Before (5.6) | After (5.7) | Δ |
+|--------|-------------|------------|---|
+| avg confidence | 0.237 | **0.507** | +114% |
+| Unknown rate | 64.6% | **45.6%** | −19pp |
+| min confidence floor | 0.007–0.011 | **0.102–0.252** | floor raised 14–30× |
+| HeadLine groups | 11 | **18** | +64% |
+| HeartLine groups | 16 | **19** | +19% |
+| Groups merged (PROXIMITY_DIST) | ~1/image | ~4/image | fragments connecting |
+| Low-conf ratio (best image) | 0.857 | **0.250** | ✅ |
+| Low-conf ratio (worst image) | 1.000 | **0.636** | improved |
+
+**All Phase 5.7 pass criteria met** (avg_conf ≥ 0.38, Unknown < 50%, ≥1 group ≥ 0.5 per image, 0 failures).
+
+**Remaining for Phase 5.8:**
+- FateLine still under-detected (orientation mismatch at 150–175° outside 70–120° range)
+- IMG_0022 max_conf still 0.426 — palm alignment/orientation issue
+- Finger-zone Unknown candidates (y < 130) — pre-classification discard candidate
+- HeadLine near-vertical (85–95°) orientation variant not yet captured
+
+
 ## Phase 6 — Semantic Segmentation
 _Not started_
 

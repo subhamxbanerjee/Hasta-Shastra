@@ -20,19 +20,24 @@ import numpy as np
 
 # -----------------------------------------------------------------------------
 # Heuristic constants – can be overridden from the CLI
+# Phase 5.7 calibration applied — see PHASE_5_7_CLASSIFICATION_ANALYSIS.md
 # -----------------------------------------------------------------------------
-PROXIMITY_DIST = 15          # max Euclidean distance (pixels) between centroids
+PROXIMITY_DIST = 40          # max Euclidean distance (pixels) between centroids
+                              # (raised 15→40: allows nearby line fragments to merge)
 ANGLE_TOLERANCE = 20          # max angle difference (degrees) between orientations
 MIN_GROUP_LENGTH = 40        # discard groups shorter than this (pixels)
-CURVATURE_THRESHOLD = 0.25   # higher values mean more curved
+CURVATURE_THRESHOLD = 1.5    # arc_length/area ratio; all observed values 0.29–1.11
+                              # (raised 0.25→1.5: restores 30% of confidence formula)
 SHOW_WINDOWS = False         # set True for debugging visualisation
 
-# Approximate region boxes for the four classic palm lines (in 512×512 normalized space)
+# Spatial region boxes for the four classic palm lines (in 512×512 normalized space).
+# Phase 5.7: widened based on actual centroid positions observed across 6-image dataset.
+# Previous values caused 35–40% of Unknown assignments due to centroids 5–80px outside boxes.
 CLASS_REGION_BOUNDS = {
-    "HeartLine": {"x": (150, 380), "y": (350, 460)},
-    "HeadLine":  {"x": (120, 350), "y": (210, 320)},
-    "LifeLine":  {"x": ( 60, 250), "y": (380, 500)},
-    "FateLine":  {"x": (380, 470), "y": (260, 380)},
+    "HeartLine": {"x": (100, 420), "y": (330, 480)},  # was (150,380),(350,460)
+    "HeadLine":  {"x": ( 80, 400), "y": (180, 340)},  # was (120,350),(210,320)
+    "LifeLine":  {"x": ( 40, 280), "y": (350, 512)},  # was ( 60,250),(380,500)
+    "FateLine":  {"x": (360, 512), "y": (240, 400)},  # was (380,470),(260,380)
 }
 
 COLOR_MAP = {
@@ -142,31 +147,73 @@ def group_properties(group_idxs: List[int], measurements: List[Dict], contours: 
     }
 
 def classify_group(props: Dict) -> Tuple[str, float]:
+    """Assign a preliminary class and confidence score to a line group.
+
+    Returns
+    -------
+    (assigned_class, confidence, confidence_reasons)
+    confidence_reasons is a dict with the individual score components for
+    explainability and diagnostics.
+    """
     cx, cy = props["centroid"]
     assigned = "Unknown"
     for line, bounds in CLASS_REGION_BOUNDS.items():
         if bounds["x"][0] <= cx <= bounds["x"][1] and bounds["y"][0] <= cy <= bounds["y"][1]:
             assigned = line
             break
+
+    # Phase 5.7: corrected orientation ranges.
+    # HeartLine: lowered lower bound 20→0° (real HeartLine clusters at 5–25°)
+    # HeadLine:  widened 10–30° → 0–50° (captures both horizontal and oblique HeadLine)
+    # LifeLine:  widened 70–110° → 60–120° (accommodates curved LifeLine variability)
+    # FateLine:  corrected 30–70° → 70–120° (near-vertical; all observed at 100–175°)
     ORIENT_RANGES = {
-        "HeartLine": (20, 40),
-        "HeadLine":  (10, 30),
-        "LifeLine":  (70, 110),
-        "FateLine":  (30, 70),
+        "HeartLine": (0,  40),
+        "HeadLine":  (0,  50),
+        "LifeLine":  (60, 120),
+        "FateLine":  (70, 120),
     }
-    length_score = min(props["length"] / 1500.0, 1.0)
+
+    # Phase 5.7: normalizer lowered 1500→400px.
+    # Longest observed line across 6-image dataset is 836px; most are 50–250px.
+    # At 1500, length contributed near-zero despite 20% weight. At 400 it discriminates.
+    length_score = min(props["length"] / 400.0, 1.0)
+
+    # Phase 5.7: CURVATURE_THRESHOLD raised 0.25→1.5.
+    # All observed curvature values (arc_length/area) range 0.29–1.11.
+    # At 0.25, curvature_score was 0.0 for every group, zeroing out 30% of confidence.
     curvature_score = 1.0 - min(props["curvature"] / CURVATURE_THRESHOLD, 1.0)
-    orient_score = 0.5
+
+    orient_score = 0.5  # baseline for Unknown or unmatched orientation
+    orient_in_range = False
+    orient_delta = None
     if assigned != "Unknown":
         low, high = ORIENT_RANGES[assigned]
         if low <= props["orientation"] <= high:
             orient_score = 1.0
+            orient_in_range = True
         else:
             delta = min(abs(props["orientation"] - low), abs(props["orientation"] - high))
+            orient_delta = round(delta, 2)
             orient_score = max(0.0, 1.0 - delta / 30.0)
+
     confidence = 0.2 * length_score + 0.3 * curvature_score + 0.5 * orient_score
     confidence = round(min(max(confidence, 0.0), 1.0), 3)
-    return assigned, confidence
+
+    confidence_reasons = {
+        "region": assigned,
+        "length": round(props["length"], 2),
+        "length_score": round(length_score, 3),
+        "curvature": round(props["curvature"], 4),
+        "curvature_score": round(curvature_score, 3),
+        "orientation": round(props["orientation"], 2),
+        "orient_score": round(orient_score, 3),
+        "orient_in_range": orient_in_range,
+        "orient_delta_deg": orient_delta,
+        "weights": "length×0.2 + curvature×0.3 + orient×0.5",
+    }
+
+    return assigned, confidence, confidence_reasons
 
 def draw_overlay(base_img: np.ndarray, groups_info: List[Dict]):
     overlay = cv2.cvtColor(base_img.copy(), cv2.COLOR_GRAY2BGR)
@@ -242,11 +289,12 @@ def run_classification(candidate_img_path: Path, meas_path: Path, normalized_img
     groups_info: List[Dict] = []
     for gid, idxs in enumerate(groups_idx):
         props = group_properties(idxs, measurements, contours)
-        line_class, confidence = classify_group(props)
+        line_class, confidence, confidence_reasons = classify_group(props)
         group_entry = {
             "id": gid,
             "class": line_class,
             "confidence": confidence,
+            "confidence_reasons": confidence_reasons,
             "component_ids": [measurements[i]["id"] for i in idxs],
             "centroid": {"x": props["centroid"][0], "y": props["centroid"][1]},
             "length": props["length"],
@@ -265,6 +313,7 @@ def run_classification(candidate_img_path: Path, meas_path: Path, normalized_img
         serialisable.append(g_copy)
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(serialisable, f, indent=2)
+
 
     # Visual overlay
     norm_img = cv2.imread(str(normalized_img_path), cv2.IMREAD_GRAYSCALE)

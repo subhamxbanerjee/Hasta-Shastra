@@ -1,8 +1,20 @@
 [
   {
     "id": 0,
-    "class": "Unknown",
-    "confidence": 0.261,
+    "class": "HeadLine",
+    "confidence": 0.178,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 79.11,
+      "length_score": 0.198,
+      "curvature": 0.8073,
+      "curvature_score": 0.462,
+      "orientation": 166.39,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_delta_deg": 116.39,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
       0
     ],
@@ -17,7 +29,19 @@
   {
     "id": 1,
     "class": "Unknown",
-    "confidence": 0.257,
+    "confidence": 0.457,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 51.11,
+      "length_score": 0.128,
+      "curvature": 0.5943,
+      "curvature_score": 0.604,
+      "orientation": 154.94,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
       1
     ],
@@ -32,7 +56,19 @@
   {
     "id": 2,
     "class": "Unknown",
-    "confidence": 0.275,
+    "confidence": 0.551,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 189.14,
+      "length_score": 0.473,
+      "curvature": 0.4665,
+      "curvature_score": 0.689,
+      "orientation": 103.29,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
       2,
       3
@@ -48,7 +84,19 @@
   {
     "id": 3,
     "class": "Unknown",
-    "confidence": 0.278,
+    "confidence": 0.58,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 210.89,
+      "length_score": 0.527,
+      "curvature": 0.3783,
+      "curvature_score": 0.748,
+      "orientation": 90.4,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
       4
     ],
@@ -63,7 +111,19 @@
   {
     "id": 4,
     "class": "Unknown",
-    "confidence": 0.259,
+    "confidence": 0.493,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 66.77,
+      "length_score": 0.167,
+      "curvature": 0.4511,
+      "curvature_score": 0.699,
+      "orientation": 85.58,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
       5
     ],
@@ -78,7 +138,19 @@
   {
     "id": 5,
     "class": "Unknown",
-    "confidence": 0.256,
+    "confidence": 0.461,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 46.87,
+      "length_score": 0.117,
+      "curvature": 0.5613,
+      "curvature_score": 0.626,
+      "orientation": 153.41,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
       8
     ],
@@ -92,68 +164,80 @@
   },
   {
     "id": 6,
-    "class": "Unknown",
-    "confidence": 0.262,
+    "class": "HeadLine",
+    "confidence": 0.398,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 699.43,
+      "length_score": 1.0,
+      "curvature": 0.5093,
+      "curvature_score": 0.66,
+      "orientation": 90.0,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_delta_deg": 40.0,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
-      12
+      12,
+      16,
+      19,
+      23,
+      26,
+      28
     ],
     "centroid": {
-      "x": 151.6913604736328,
-      "y": 64.44444274902344
+      "x": 133.9499969482422,
+      "y": 247.70333862304688
     },
-    "length": 89.8406195640564,
-    "orientation": 7.012147666594362,
-    "curvature": 0.4595428087187396
+    "length": 699.4284926652908,
+    "orientation": 89.99644805234091,
+    "curvature": 0.50930949733636
   },
   {
     "id": 7,
     "class": "Unknown",
-    "confidence": 0.263,
+    "confidence": 0.533,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 177.04,
+      "length_score": 0.443,
+      "curvature": 0.5292,
+      "curvature_score": 0.647,
+      "orientation": 80.86,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
-      15
+      15,
+      17
     ],
     "centroid": {
-      "x": 309.3513488769531,
-      "y": 78.35134887695312
+      "x": 314.2823486328125,
+      "y": 114.43529510498047
     },
-    "length": 100.71067690849304,
-    "orientation": 17.230437548647348,
-    "curvature": 0.5443820344006001
+    "length": 177.0365777015686,
+    "orientation": 80.86467233019967,
+    "curvature": 0.5291805804295809
   },
   {
     "id": 8,
     "class": "Unknown",
-    "confidence": 0.278,
-    "component_ids": [
-      16
-    ],
-    "centroid": {
-      "x": 113.73015594482422,
-      "y": 153.23809814453125
+    "confidence": 0.497,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 71.25,
+      "length_score": 0.178,
+      "curvature": 0.4453,
+      "curvature_score": 0.703,
+      "orientation": 94.66,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
-    "length": 213.05382251739502,
-    "orientation": 171.6133021865238,
-    "curvature": 0.3648181886174261
-  },
-  {
-    "id": 9,
-    "class": "Unknown",
-    "confidence": 0.26,
-    "component_ids": [
-      17
-    ],
-    "centroid": {
-      "x": 318.0833435058594,
-      "y": 142.25
-    },
-    "length": 76.32590079307556,
-    "orientation": 16.899932790720037,
-    "curvature": 0.5139791264585618
-  },
-  {
-    "id": 10,
-    "class": "Unknown",
-    "confidence": 0.26,
     "component_ids": [
       18
     ],
@@ -166,24 +250,21 @@
     "curvature": 0.4453427026154061
   },
   {
-    "id": 11,
+    "id": 9,
     "class": "Unknown",
-    "confidence": 0.264,
-    "component_ids": [
-      19
-    ],
-    "centroid": {
-      "x": 59.17856979370117,
-      "y": 294.1071472167969
+    "confidence": 0.464,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 61.84,
+      "length_score": 0.155,
+      "curvature": 0.5862,
+      "curvature_score": 0.609,
+      "orientation": 117.59,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
-    "length": 108.14213538169861,
-    "orientation": 19.045185896936665,
-    "curvature": 0.8010528487455242
-  },
-  {
-    "id": 12,
-    "class": "Unknown",
-    "confidence": 0.258,
     "component_ids": [
       21
     ],
@@ -196,9 +277,21 @@
     "curvature": 0.5861670056597031
   },
   {
-    "id": 13,
+    "id": 10,
     "class": "HeartLine",
-    "confidence": 0.008,
+    "confidence": 0.238,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 62.77,
+      "length_score": 0.157,
+      "curvature": 0.465,
+      "curvature_score": 0.69,
+      "orientation": 70.62,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_delta_deg": 30.62,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
       22
     ],
@@ -211,25 +304,21 @@
     "curvature": 0.464959640944124
   },
   {
-    "id": 14,
-    "class": "LifeLine",
-    "confidence": 0.02,
-    "component_ids": [
-      23,
-      28
-    ],
-    "centroid": {
-      "x": 110.71830749511719,
-      "y": 393.6197204589844
-    },
-    "length": 151.09545266628265,
-    "orientation": 171.26597587497272,
-    "curvature": 0.5081379156926834
-  },
-  {
-    "id": 15,
+    "id": 11,
     "class": "HeartLine",
-    "confidence": 0.016,
+    "confidence": 0.239,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 123.44,
+      "length_score": 0.309,
+      "curvature": 0.6157,
+      "curvature_score": 0.59,
+      "orientation": 153.75,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_delta_deg": 113.75,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
       25
     ],
@@ -242,24 +331,21 @@
     "curvature": 0.6156538542580552
   },
   {
-    "id": 16,
-    "class": "HeartLine",
-    "confidence": 0.426,
-    "component_ids": [
-      26
-    ],
-    "centroid": {
-      "x": 196.75437927246094,
-      "y": 407.9824523925781
-    },
-    "length": 137.29646253585815,
-    "orientation": 14.437425159134811,
-    "curvature": 0.4141673065511036
-  },
-  {
-    "id": 17,
+    "id": 12,
     "class": "Unknown",
-    "confidence": 0.256,
+    "confidence": 0.464,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 47.8,
+      "length_score": 0.119,
+      "curvature": 0.5494,
+      "curvature_score": 0.634,
+      "orientation": 176.64,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
     "component_ids": [
       27
     ],

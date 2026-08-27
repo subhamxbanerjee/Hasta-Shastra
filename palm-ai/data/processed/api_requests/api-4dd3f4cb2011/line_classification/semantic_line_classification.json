@@ -1,0 +1,260 @@
+[
+  {
+    "id": 0,
+    "class": "HeadLine",
+    "confidence": 0.178,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 79.11,
+      "length_score": 0.198,
+      "curvature": 0.8073,
+      "curvature_score": 0.462,
+      "orientation": 166.39,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 66.39,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      0
+    ],
+    "centroid": {
+      "x": 335.1666564941406,
+      "y": 200.9166717529297
+    },
+    "length": 79.11269783973694,
+    "orientation": 166.3920320592995,
+    "curvature": 0.8072724186986175
+  },
+  {
+    "id": 3,
+    "class": "Unknown",
+    "confidence": 0.58,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 210.89,
+      "length_score": 0.527,
+      "curvature": 0.3783,
+      "curvature_score": 0.748,
+      "orientation": 90.4,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      4
+    ],
+    "centroid": {
+      "x": 508.625,
+      "y": 157.75
+    },
+    "length": 210.89444172382355,
+    "orientation": 90.39849491701219,
+    "curvature": 0.37828599344491043
+  },
+  {
+    "id": 6,
+    "class": "HeadLine",
+    "confidence": 0.898,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 699.43,
+      "length_score": 1.0,
+      "curvature": 0.5093,
+      "curvature_score": 0.66,
+      "orientation": 90.0,
+      "orient_score": 1.0,
+      "orient_in_range": true,
+      "orient_bimodal_headline": true,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      12,
+      16,
+      19,
+      23,
+      26,
+      28
+    ],
+    "centroid": {
+      "x": 133.9499969482422,
+      "y": 247.70333862304688
+    },
+    "length": 699.4284926652908,
+    "orientation": 89.99644805234091,
+    "curvature": 0.50930949733636
+  },
+  {
+    "id": 7,
+    "class": "Unknown",
+    "confidence": 0.533,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 177.04,
+      "length_score": 0.443,
+      "curvature": 0.5292,
+      "curvature_score": 0.647,
+      "orientation": 80.86,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      15,
+      17
+    ],
+    "centroid": {
+      "x": 314.2823486328125,
+      "y": 114.43529510498047
+    },
+    "length": 177.0365777015686,
+    "orientation": 80.86467233019967,
+    "curvature": 0.5291805804295809
+  },
+  {
+    "id": 8,
+    "class": "Unknown",
+    "confidence": 0.497,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 71.25,
+      "length_score": 0.178,
+      "curvature": 0.4453,
+      "curvature_score": 0.703,
+      "orientation": 94.66,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      18
+    ],
+    "centroid": {
+      "x": 38.904762268066406,
+      "y": 183.93650817871094
+    },
+    "length": 71.25483286380768,
+    "orientation": 94.66303958210973,
+    "curvature": 0.4453427026154061
+  },
+  {
+    "id": 9,
+    "class": "Unknown",
+    "confidence": 0.464,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 61.84,
+      "length_score": 0.155,
+      "curvature": 0.5862,
+      "curvature_score": 0.609,
+      "orientation": 117.59,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      21
+    ],
+    "centroid": {
+      "x": 421.5833435058594,
+      "y": 145.38888549804688
+    },
+    "length": 61.840619683265686,
+    "orientation": 117.5936326500422,
+    "curvature": 0.5861670056597031
+  },
+  {
+    "id": 10,
+    "class": "HeartLine",
+    "confidence": 0.238,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 62.77,
+      "length_score": 0.157,
+      "curvature": 0.465,
+      "curvature_score": 0.69,
+      "orientation": 70.62,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 30.62,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      22
+    ],
+    "centroid": {
+      "x": 163.4166717529297,
+      "y": 374.375
+    },
+    "length": 62.76955199241638,
+    "orientation": 70.62105751720341,
+    "curvature": 0.464959640944124
+  },
+  {
+    "id": 11,
+    "class": "HeartLine",
+    "confidence": 0.239,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 123.44,
+      "length_score": 0.309,
+      "curvature": 0.6157,
+      "curvature_score": 0.59,
+      "orientation": 153.75,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 113.75,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      25
+    ],
+    "centroid": {
+      "x": 266.8235168457031,
+      "y": 386.3431396484375
+    },
+    "length": 123.43859839439392,
+    "orientation": 153.75388859956448,
+    "curvature": 0.6156538542580552
+  },
+  {
+    "id": 12,
+    "class": "Unknown",
+    "confidence": 0.464,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 47.8,
+      "length_score": 0.119,
+      "curvature": 0.5494,
+      "curvature_score": 0.634,
+      "orientation": 176.64,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      27
+    ],
+    "centroid": {
+      "x": 292.75860595703125,
+      "y": 508.03448486328125
+    },
+    "length": 47.79898953437805,
+    "orientation": 176.64246376107317,
+    "curvature": 0.5494136664938435
+  }
+]

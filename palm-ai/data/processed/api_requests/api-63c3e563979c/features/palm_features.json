@@ -1,0 +1,51 @@
+{
+  "image_id": "palm_image.jpg",
+  "image_metadata": {
+    "normalized_width": 512,
+    "normalized_height": 512
+  },
+  "lines": {
+    "LifeLine": {
+      "detected": true,
+      "num_fragments": 1,
+      "max_confidence": 0.21,
+      "total_length": 48.87,
+      "normalized_length": 0.0954,
+      "weighted_orientation": 9.03,
+      "weighted_curvature": 0.57
+    },
+    "HeadLine": {
+      "detected": true,
+      "num_fragments": 3,
+      "max_confidence": 0.789,
+      "total_length": 422.66,
+      "normalized_length": 0.8255,
+      "weighted_orientation": 106.7,
+      "weighted_curvature": 0.43
+    },
+    "HeartLine": {
+      "detected": true,
+      "num_fragments": 1,
+      "max_confidence": 0.787,
+      "total_length": 142.23,
+      "normalized_length": 0.2778,
+      "weighted_orientation": 12.92,
+      "weighted_curvature": 0.42
+    },
+    "FateLine": {
+      "detected": false,
+      "num_fragments": 0,
+      "max_confidence": null,
+      "total_length": 0.0,
+      "normalized_length": 0.0,
+      "weighted_orientation": null,
+      "weighted_curvature": null
+    }
+  },
+  "summary": {
+    "detected_major_lines": 3,
+    "total_major_line_groups": 5,
+    "average_confidence": 0.467,
+    "minimum_confidence": 0.21
+  }
+}

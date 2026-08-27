@@ -1,0 +1,343 @@
+[
+  {
+    "id": 0,
+    "class": "HeadLine",
+    "confidence": 0.214,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 66.28,
+      "length_score": 0.166,
+      "curvature": 0.5972,
+      "curvature_score": 0.602,
+      "orientation": 172.33,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 72.33,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      0
+    ],
+    "centroid": {
+      "x": 246.49192810058594,
+      "y": 226.15322875976562
+    },
+    "length": 66.28427040576935,
+    "orientation": 172.33360169084608,
+    "curvature": 0.5971555838613852
+  },
+  {
+    "id": 2,
+    "class": "HeadLine",
+    "confidence": 0.841,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 246.39,
+      "length_score": 0.616,
+      "curvature": 0.3687,
+      "curvature_score": 0.754,
+      "orientation": 100.52,
+      "orient_score": 0.983,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 0.52,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      3,
+      4,
+      18
+    ],
+    "centroid": {
+      "x": 363.6880798339844,
+      "y": 239.31192016601562
+    },
+    "length": 246.3919154405594,
+    "orientation": 100.52419516758195,
+    "curvature": 0.36865321962405906
+  },
+  {
+    "id": 3,
+    "class": "Unknown",
+    "confidence": 0.533,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 89.4,
+      "length_score": 0.223,
+      "curvature": 0.3083,
+      "curvature_score": 0.794,
+      "orientation": 105.69,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      5
+    ],
+    "centroid": {
+      "x": 443.7200012207031,
+      "y": 130.1999969482422
+    },
+    "length": 89.39696824550629,
+    "orientation": 105.68844706951286,
+    "curvature": 0.30826540668014096
+  },
+  {
+    "id": 6,
+    "class": "HeadLine",
+    "confidence": 0.371,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 283.26,
+      "length_score": 0.708,
+      "curvature": 0.3517,
+      "curvature_score": 0.766,
+      "orientation": 154.27,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 54.27,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      8
+    ],
+    "centroid": {
+      "x": 306.6046447753906,
+      "y": 208.53488159179688
+    },
+    "length": 283.2619730234146,
+    "orientation": 154.2674629913734,
+    "curvature": 0.3516598046825013
+  },
+  {
+    "id": 7,
+    "class": "HeadLine",
+    "confidence": 0.925,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 499.57,
+      "length_score": 1.0,
+      "curvature": 0.377,
+      "curvature_score": 0.749,
+      "orientation": 48.74,
+      "orient_score": 1.0,
+      "orient_in_range": true,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      10,
+      17,
+      20
+    ],
+    "centroid": {
+      "x": 231.37457275390625,
+      "y": 259.6423645019531
+    },
+    "length": 499.5706285238266,
+    "orientation": 48.73825400692307,
+    "curvature": 0.37700368834873227
+  },
+  {
+    "id": 8,
+    "class": "Unknown",
+    "confidence": 0.687,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 758.21,
+      "length_score": 1.0,
+      "curvature": 0.3172,
+      "curvature_score": 0.789,
+      "orientation": 5.28,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      16
+    ],
+    "centroid": {
+      "x": 166.90625,
+      "y": 124.84375
+    },
+    "length": 758.2051855325699,
+    "orientation": 5.277419200551798,
+    "curvature": 0.31724066327001227
+  },
+  {
+    "id": 9,
+    "class": "HeartLine",
+    "confidence": 0.622,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 133.2,
+      "length_score": 0.333,
+      "curvature": 0.5219,
+      "curvature_score": 0.652,
+      "orientation": 48.41,
+      "orient_score": 0.72,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 8.41,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      21,
+      24
+    ],
+    "centroid": {
+      "x": 134.2763214111328,
+      "y": 402.2302551269531
+    },
+    "length": 133.19595801830292,
+    "orientation": 48.40777103196636,
+    "curvature": 0.521941003507699
+  },
+  {
+    "id": 10,
+    "class": "HeartLine",
+    "confidence": 0.823,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 198.55,
+      "length_score": 0.496,
+      "curvature": 0.3807,
+      "curvature_score": 0.746,
+      "orientation": 19.4,
+      "orient_score": 1.0,
+      "orient_in_range": true,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      23
+    ],
+    "centroid": {
+      "x": 228.76364135742188,
+      "y": 428.7454528808594
+    },
+    "length": 198.55129635334015,
+    "orientation": 19.40019562020614,
+    "curvature": 0.38073115239234706
+  },
+  {
+    "id": 11,
+    "class": "LifeLine",
+    "confidence": 0.729,
+    "confidence_reasons": {
+      "region": "LifeLine",
+      "length": 50.28,
+      "length_score": 0.126,
+      "curvature": 0.4789,
+      "curvature_score": 0.681,
+      "orientation": 119.99,
+      "orient_score": 1.0,
+      "orient_in_range": true,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      25
+    ],
+    "centroid": {
+      "x": 68.30921173095703,
+      "y": 442.8881530761719
+    },
+    "length": 50.28427076339722,
+    "orientation": 119.98921826299572,
+    "curvature": 0.47889781223332767
+  },
+  {
+    "id": 12,
+    "class": "HeartLine",
+    "confidence": 0.21,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 49.46,
+      "length_score": 0.124,
+      "curvature": 0.5751,
+      "curvature_score": 0.617,
+      "orientation": 169.3,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 129.3,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      27
+    ],
+    "centroid": {
+      "x": 331.6000061035156,
+      "y": 421.8285827636719
+    },
+    "length": 49.455843687057495,
+    "orientation": 169.30160428109141,
+    "curvature": 0.5750679431626692
+  },
+  {
+    "id": 13,
+    "class": "HeartLine",
+    "confidence": 0.209,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 68.28,
+      "length_score": 0.171,
+      "curvature": 0.6265,
+      "curvature_score": 0.582,
+      "orientation": 84.45,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 44.45,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      28
+    ],
+    "centroid": {
+      "x": 309.7037048339844,
+      "y": 440.8148193359375
+    },
+    "length": 68.28427052497864,
+    "orientation": 84.45454043580884,
+    "curvature": 0.6264611917295179
+  },
+  {
+    "id": 14,
+    "class": "LifeLine",
+    "confidence": 0.102,
+    "confidence_reasons": {
+      "region": "LifeLine",
+      "length": 47.8,
+      "length_score": 0.119,
+      "curvature": 1.1116,
+      "curvature_score": 0.259,
+      "orientation": 7.72,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 52.28,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      29
+    ],
+    "centroid": {
+      "x": 204.9130401611328,
+      "y": 507.3043518066406
+    },
+    "length": 47.79898953437805,
+    "orientation": 7.719536911586395,
+    "curvature": 1.111604381924969
+  }
+]

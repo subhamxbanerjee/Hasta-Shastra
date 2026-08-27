@@ -1,0 +1,226 @@
+[
+  {
+    "id": 0,
+    "class": "HeadLine",
+    "confidence": 0.719,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 56.28,
+      "length_score": 0.141,
+      "curvature": 0.5464,
+      "curvature_score": 0.636,
+      "orientation": 92.79,
+      "orient_score": 1.0,
+      "orient_in_range": true,
+      "orient_bimodal_headline": true,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      0
+    ],
+    "centroid": {
+      "x": 287.7492370605469,
+      "y": 229.56495666503906
+    },
+    "length": 56.28427076339722,
+    "orientation": 92.79302202581182,
+    "curvature": 0.546449225407262
+  },
+  {
+    "id": 4,
+    "class": "Unknown",
+    "confidence": 0.447,
+    "confidence_reasons": {
+      "region": "Unknown",
+      "length": 54.18,
+      "length_score": 0.135,
+      "curvature": 0.6489,
+      "curvature_score": 0.567,
+      "orientation": 14.04,
+      "orient_score": 0.5,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      8
+    ],
+    "centroid": {
+      "x": 193.93939208984375,
+      "y": 135.84848022460938
+    },
+    "length": 54.18376553058624,
+    "orientation": 14.042560775719542,
+    "curvature": 0.6489073638524416
+  },
+  {
+    "id": 5,
+    "class": "HeadLine",
+    "confidence": 0.758,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 94.18,
+      "length_score": 0.235,
+      "curvature": 0.4474,
+      "curvature_score": 0.702,
+      "orientation": 88.04,
+      "orient_score": 1.0,
+      "orient_in_range": true,
+      "orient_bimodal_headline": true,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      14
+    ],
+    "centroid": {
+      "x": 216.0,
+      "y": 216.7857208251953
+    },
+    "length": 94.18376517295837,
+    "orientation": 88.03890742062721,
+    "curvature": 0.44742881104764637
+  },
+  {
+    "id": 6,
+    "class": "HeadLine",
+    "confidence": 0.233,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 102.81,
+      "length_score": 0.257,
+      "curvature": 0.5926,
+      "curvature_score": 0.605,
+      "orientation": 152.53,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 52.53,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      16
+    ],
+    "centroid": {
+      "x": 320.0294189453125,
+      "y": 313.9117736816406
+    },
+    "length": 102.81118214130402,
+    "orientation": 152.53335098960852,
+    "curvature": 0.5925716515777082
+  },
+  {
+    "id": 7,
+    "class": "HeadLine",
+    "confidence": 0.936,
+    "confidence_reasons": {
+      "region": "HeadLine",
+      "length": 836.16,
+      "length_score": 1.0,
+      "curvature": 0.3207,
+      "curvature_score": 0.786,
+      "orientation": 3.32,
+      "orient_score": 1.0,
+      "orient_in_range": true,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      17
+    ],
+    "centroid": {
+      "x": 175.44444274902344,
+      "y": 250.38888549804688
+    },
+    "length": 836.1635538339615,
+    "orientation": 3.3232142009421093,
+    "curvature": 0.3206763388353922
+  },
+  {
+    "id": 8,
+    "class": "HeartLine",
+    "confidence": 0.341,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 181.28,
+      "length_score": 0.453,
+      "curvature": 0.4648,
+      "curvature_score": 0.69,
+      "orientation": 67.41,
+      "orient_score": 0.086,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 27.41,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      19
+    ],
+    "centroid": {
+      "x": 187.9199981689453,
+      "y": 349.760009765625
+    },
+    "length": 181.27921783924103,
+    "orientation": 67.40519633177335,
+    "curvature": 0.46481850608826286
+  },
+  {
+    "id": 9,
+    "class": "LifeLine",
+    "confidence": 0.315,
+    "confidence_reasons": {
+      "region": "LifeLine",
+      "length": 220.17,
+      "length_score": 0.55,
+      "curvature": 0.4766,
+      "curvature_score": 0.682,
+      "orientation": 19.6,
+      "orient_score": 0.0,
+      "orient_in_range": false,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 40.4,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      22
+    ],
+    "centroid": {
+      "x": 96.02898406982422,
+      "y": 375.13043212890625
+    },
+    "length": 220.16652059555054,
+    "orientation": 19.597960194201377,
+    "curvature": 0.47655090934848404
+  },
+  {
+    "id": 10,
+    "class": "HeartLine",
+    "confidence": 0.715,
+    "confidence_reasons": {
+      "region": "HeartLine",
+      "length": 93.56,
+      "length_score": 0.234,
+      "curvature": 0.6612,
+      "curvature_score": 0.559,
+      "orientation": 14.72,
+      "orient_score": 1.0,
+      "orient_in_range": true,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": null,
+      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
+    },
+    "component_ids": [
+      23
+    ],
+    "centroid": {
+      "x": 164.7142791748047,
+      "y": 435.1071472167969
+    },
+    "length": 93.55634891986847,
+    "orientation": 14.723398672821755,
+    "curvature": 0.6611756060685008
+  }
+]

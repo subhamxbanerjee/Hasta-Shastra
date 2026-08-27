@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total_images": 6,
+    "total_images": 8,
     "successful_images": 6,
-    "failed_images": 0,
+    "failed_images": 2,
     "average_candidate_count": 20.166666666666668,
     "min_candidate_count": 11,
     "max_candidate_count": 29,
@@ -50,6 +50,14 @@
   },
   "records": [
     {
+      "image_id": "corrupt",
+      "image": "corrupt.jpg",
+      "status": "failed",
+      "stage": "normalization",
+      "error": "Could not load image: C:\\Users\\subha\\OneDrive\\Desktop\\Hasta-Shastra\\palm-ai\\data\\raw\\images\\corrupt.jpg",
+      "duration_sec": 0.0
+    },
+    {
       "image_id": "IMG_0005",
       "image": "IMG_0005.jpg",
       "status": "success",
@@ -74,8 +82,13 @@
         13,
         14
       ],
+      "detected_lines": [
+        "LifeLine",
+        "HeadLine",
+        "HeartLine"
+      ],
       "output_dir": "C:\\Users\\subha\\OneDrive\\Desktop\\Hasta-Shastra\\palm-ai\\data\\processed\\multi_image_validation\\IMG_0005",
-      "duration_sec": 0.81
+      "duration_sec": 0.93
     },
     {
       "image_id": "IMG_0007",
@@ -101,8 +114,13 @@
         9,
         13
       ],
+      "detected_lines": [
+        "LifeLine",
+        "HeadLine",
+        "HeartLine"
+      ],
       "output_dir": "C:\\Users\\subha\\OneDrive\\Desktop\\Hasta-Shastra\\palm-ai\\data\\processed\\multi_image_validation\\IMG_0007",
-      "duration_sec": 0.56
+      "duration_sec": 0.68
     },
     {
       "image_id": "IMG_0016",
@@ -129,8 +147,14 @@
         10,
         15
       ],
+      "detected_lines": [
+        "LifeLine",
+        "HeadLine",
+        "HeartLine",
+        "FateLine"
+      ],
       "output_dir": "C:\\Users\\subha\\OneDrive\\Desktop\\Hasta-Shastra\\palm-ai\\data\\processed\\multi_image_validation\\IMG_0016",
-      "duration_sec": 0.58
+      "duration_sec": 0.68
     },
     {
       "image_id": "IMG_0020",
@@ -156,8 +180,13 @@
         8,
         9
       ],
+      "detected_lines": [
+        "LifeLine",
+        "HeadLine",
+        "HeartLine"
+      ],
       "output_dir": "C:\\Users\\subha\\OneDrive\\Desktop\\Hasta-Shastra\\palm-ai\\data\\processed\\multi_image_validation\\IMG_0020",
-      "duration_sec": 0.54
+      "duration_sec": 0.66
     },
     {
       "image_id": "IMG_0022",
@@ -185,8 +214,20 @@
         11,
         12
       ],
+      "detected_lines": [
+        "HeadLine",
+        "HeartLine"
+      ],
       "output_dir": "C:\\Users\\subha\\OneDrive\\Desktop\\Hasta-Shastra\\palm-ai\\data\\processed\\multi_image_validation\\IMG_0022",
-      "duration_sec": 0.51
+      "duration_sec": 0.67
+    },
+    {
+      "image_id": "no_hand",
+      "image": "no_hand.jpg",
+      "status": "failed",
+      "stage": "normalization",
+      "error": "No hand detected.",
+      "duration_sec": 0.29
     },
     {
       "image_id": "test_palm",
@@ -213,8 +254,14 @@
         14,
         19
       ],
+      "detected_lines": [
+        "LifeLine",
+        "HeadLine",
+        "HeartLine",
+        "FateLine"
+      ],
       "output_dir": "C:\\Users\\subha\\OneDrive\\Desktop\\Hasta-Shastra\\palm-ai\\data\\processed\\multi_image_validation\\test_palm",
-      "duration_sec": 0.62
+      "duration_sec": 0.67
     }
   ]
 }

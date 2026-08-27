@@ -1,6 +1,11 @@
 PHASE 5.6 - ROBUSTNESS REPORT
 ============================================================
 
+Image   : corrupt.jpg (id=corrupt)
+Status  : FAILED
+Stage failed: normalization
+Error       : Could not load image: C:\Users\subha\OneDrive\Desktop\Hasta-Shastra\palm-ai\data\raw\images\corrupt.jpg
+
 Image   : IMG_0005.jpg (id=IMG_0005)
 Status  : SUCCESS
 Candidates : 20
@@ -10,7 +15,8 @@ avg_conf   : 0.522
 max_conf   : 0.925
 low_conf_count : 5 (ratio=0.417)
 Classes    : LifeLine=2, HeadLine=4, HeartLine=4, FateLine=0, Unknown=2
-Duration   : 0.81s
+Detected   : LifeLine, HeadLine, HeartLine
+Duration   : 0.93s
 
 Image   : IMG_0007.jpg (id=IMG_0007)
 Status  : SUCCESS
@@ -21,7 +27,8 @@ avg_conf   : 0.533
 max_conf   : 0.789
 low_conf_count : 4 (ratio=0.308)
 Classes    : LifeLine=1, HeadLine=3, HeartLine=1, FateLine=0, Unknown=8
-Duration   : 0.56s
+Detected   : LifeLine, HeadLine, HeartLine
+Duration   : 0.68s
 
 Image   : IMG_0016.jpg (id=IMG_0016)
 Status  : SUCCESS
@@ -32,7 +39,8 @@ avg_conf   : 0.577
 max_conf   : 0.932
 low_conf_count : 5 (ratio=0.357)
 Classes    : LifeLine=3, HeadLine=2, HeartLine=2, FateLine=3, Unknown=4
-Duration   : 0.58s
+Detected   : LifeLine, HeadLine, HeartLine, FateLine
+Duration   : 0.68s
 
 Image   : IMG_0020.jpg (id=IMG_0020)
 Status  : SUCCESS
@@ -43,7 +51,8 @@ avg_conf   : 0.558
 max_conf   : 0.936
 low_conf_count : 4 (ratio=0.5)
 Classes    : LifeLine=1, HeadLine=4, HeartLine=2, FateLine=0, Unknown=1
-Duration   : 0.54s
+Detected   : LifeLine, HeadLine, HeartLine
+Duration   : 0.66s
 
 Image   : IMG_0022.jpg (id=IMG_0022)
 Status  : SUCCESS
@@ -54,7 +63,13 @@ avg_conf   : 0.455
 max_conf   : 0.898
 low_conf_count : 6 (ratio=0.667)
 Classes    : LifeLine=0, HeadLine=2, HeartLine=2, FateLine=0, Unknown=5
-Duration   : 0.51s
+Detected   : HeadLine, HeartLine
+Duration   : 0.67s
+
+Image   : no_hand.jpg (id=no_hand)
+Status  : FAILED
+Stage failed: normalization
+Error       : No hand detected.
 
 Image   : test_palm.jpg (id=test_palm)
 Status  : SUCCESS
@@ -65,13 +80,14 @@ avg_conf   : 0.579
 max_conf   : 0.927
 low_conf_count : 5 (ratio=0.312)
 Classes    : LifeLine=1, HeadLine=3, HeartLine=8, FateLine=1, Unknown=3
-Duration   : 0.62s
+Detected   : LifeLine, HeadLine, HeartLine, FateLine
+Duration   : 0.67s
 
 ------------------------------------------------------------
 OVERALL FINDINGS
-Images processed   : 6
+Images processed   : 8
 Successful         : 6
-Failed             : 0
+Failed             : 2
 Avg candidate count: 20.17
 Avg avg_confidence : 0.537
 Avg min_confidence : 0.198

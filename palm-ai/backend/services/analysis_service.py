@@ -2,6 +2,10 @@ import uuid
 import time
 from pathlib import Path
 from typing import Dict, Tuple
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 from backend.schemas import PalmFeatures, ErrorDetail
 
@@ -98,9 +102,12 @@ def process_palm_image(image_bytes: bytes, filename: str) -> Tuple[str, str, Dic
         # and wrap them in a clean error payload.
         # Python traceback is deliberately omitted from the API response.
         error_msg = str(e)
-        if "No hand landmarks detected" in error_msg:
+        logger.error(f"Pipeline error for request {request_id}: {error_msg}")
+        if "no hand" in error_msg.lower() or "landmarks" in error_msg.lower():
             code = "NO_HAND_DETECTED"
+            user_message = "No clear palm was detected. Please upload a clear image of one open palm with good lighting."
         else:
             code = "PIPELINE_ERROR"
+            user_message = "An unexpected error occurred while analyzing the palm. Please try another image."
             
-        return request_id, "failed", {"code": code, "message": error_msg}
+        return request_id, "failed", {"code": code, "message": user_message}

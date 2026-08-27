@@ -1,0 +1,51 @@
+{
+  "image_id": "IMG_0010.jpg",
+  "image_metadata": {
+    "normalized_width": 512,
+    "normalized_height": 512
+  },
+  "lines": {
+    "LifeLine": {
+      "detected": true,
+      "num_fragments": 1,
+      "max_confidence": 0.679,
+      "total_length": 75.46,
+      "normalized_length": 0.1474,
+      "weighted_orientation": 105.86,
+      "weighted_curvature": 0.79
+    },
+    "HeadLine": {
+      "detected": true,
+      "num_fragments": 3,
+      "max_confidence": 0.765,
+      "total_length": 221.42,
+      "normalized_length": 0.4325,
+      "weighted_orientation": 73.55,
+      "weighted_curvature": 0.44
+    },
+    "HeartLine": {
+      "detected": true,
+      "num_fragments": 8,
+      "max_confidence": 0.836,
+      "total_length": 1108.44,
+      "normalized_length": 2.1649,
+      "weighted_orientation": 71.95,
+      "weighted_curvature": 0.46
+    },
+    "FateLine": {
+      "detected": true,
+      "num_fragments": 1,
+      "max_confidence": 0.927,
+      "total_length": 394.13,
+      "normalized_length": 0.7698,
+      "weighted_orientation": 89.28,
+      "weighted_curvature": 0.35
+    }
+  },
+  "summary": {
+    "detected_major_lines": 4,
+    "total_major_line_groups": 13,
+    "average_confidence": 0.582,
+    "minimum_confidence": 0.214
+  }
+}

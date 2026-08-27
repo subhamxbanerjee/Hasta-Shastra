@@ -21,3 +21,7 @@ Thumbs.db
 
 # Large/generated files
 *.log
+
+# Generated CV Pipeline Data
+palm-ai/data/processed/*
+!palm-ai/data/processed/.gitkeep

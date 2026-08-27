@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { RotateCcw, Share2, ChevronDown, ChevronUp, Star } from "lucide-react";
+import { RotateCcw, Share2, ChevronDown, ChevronUp, Star, Activity, Maximize, TrendingUp, Layers } from "lucide-react";
 import { usePalmReading } from "../context/PalmReadingContext";
-import type { ReadingCategory } from "../types/palm";
+import type { LineFeatures } from "../types/palm";
 
 // ── Score arc visualisation ────────────────────────────────────────────────
 function ScoreArc({ score }: { score: number }) {
@@ -32,9 +32,12 @@ function ScoreArc({ score }: { score: number }) {
   );
 }
 
-// ── Individual category card ───────────────────────────────────────────────
-function CategoryCard({ cat, index }: { cat: ReadingCategory; index: number }) {
+// ── Individual Line Feature Card ───────────────────────────────────────────────
+function LineCard({ lineName, features, index }: { lineName: string; features: LineFeatures; index: number }) {
   const [expanded, setExpanded] = useState(false);
+
+  // Derive score from confidence (0-1) to percentage (0-100)
+  const score = features.max_confidence ? Math.round(features.max_confidence * 100) : 0;
 
   return (
     <motion.div
@@ -43,28 +46,25 @@ function CategoryCard({ cat, index }: { cat: ReadingCategory; index: number }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1 + index * 0.08, duration: 0.5 }}
     >
-      {/* Card header — always visible */}
       <button
         className="w-full flex items-center gap-4 p-5 text-left"
         onClick={() => setExpanded((e) => !e)}
       >
-        {/* Score arc + icon */}
         <div className="relative flex-shrink-0">
-          <ScoreArc score={cat.score} />
+          <ScoreArc score={score} />
           <span className="absolute inset-0 flex items-center justify-center text-sm rotate-90">
-            {cat.icon}
+             {features.detected ? "✅" : "❌"}
           </span>
         </div>
 
-        {/* Label + summary */}
         <div className="flex-1 min-w-0">
-          <p className="text-text-muted text-xs uppercase tracking-widest mb-0.5">{cat.label}</p>
-          <p className="text-text-secondary text-sm leading-snug">{cat.summary}</p>
+          <p className="text-text-muted text-xs uppercase tracking-widest mb-0.5">{lineName}</p>
+          <p className="text-text-secondary text-sm leading-snug">
+             {features.detected ? `Detected with ${score}% confidence` : "Not prominently detected"}
+          </p>
         </div>
 
-        {/* Score + toggle */}
         <div className="flex flex-col items-end gap-1 flex-shrink-0">
-          <span className="text-mystic-300 font-serif text-lg">{cat.score}</span>
           {expanded
             ? <ChevronUp   className="w-4 h-4 text-text-muted" />
             : <ChevronDown className="w-4 h-4 text-text-muted" />
@@ -72,9 +72,8 @@ function CategoryCard({ cat, index }: { cat: ReadingCategory; index: number }) {
         </div>
       </button>
 
-      {/* Expandable detail */}
       <AnimatePresence>
-        {expanded && (
+        {expanded && features.detected && (
           <motion.div
             key="detail"
             initial={{ height: 0, opacity: 0 }}
@@ -84,7 +83,36 @@ function CategoryCard({ cat, index }: { cat: ReadingCategory; index: number }) {
             className="overflow-hidden"
           >
             <div className="px-5 pb-5 pt-0 border-t border-border/40">
-              <p className="text-text-secondary text-sm leading-relaxed mt-4">{cat.details}</p>
+              <div className="grid grid-cols-2 gap-4 mt-4">
+                <div className="flex items-center gap-2">
+                   <Maximize className="w-4 h-4 text-mystic-400" />
+                   <div>
+                     <p className="text-text-muted text-xs">Total Length</p>
+                     <p className="text-mystic-300 text-sm font-medium">{Math.round(features.total_length)} px</p>
+                   </div>
+                </div>
+                <div className="flex items-center gap-2">
+                   <Layers className="w-4 h-4 text-mystic-400" />
+                   <div>
+                     <p className="text-text-muted text-xs">Fragments</p>
+                     <p className="text-mystic-300 text-sm font-medium">{features.num_fragments}</p>
+                   </div>
+                </div>
+                <div className="flex items-center gap-2">
+                   <TrendingUp className="w-4 h-4 text-mystic-400" />
+                   <div>
+                     <p className="text-text-muted text-xs">Orientation</p>
+                     <p className="text-mystic-300 text-sm font-medium">{features.weighted_orientation ? `${Math.round(features.weighted_orientation)}°` : 'N/A'}</p>
+                   </div>
+                </div>
+                <div className="flex items-center gap-2">
+                   <Activity className="w-4 h-4 text-mystic-400" />
+                   <div>
+                     <p className="text-text-muted text-xs">Curvature</p>
+                     <p className="text-mystic-300 text-sm font-medium">{features.weighted_curvature ? features.weighted_curvature.toFixed(2) : 'N/A'}</p>
+                   </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
@@ -106,24 +134,12 @@ export default function ResultsPage() {
     return null;
   }
 
-  const categories = Object.values(result.categories);
-
-  // ── Share ────────────────────────────────────────────────────────────────
-  const handleShare = async () => {
-    const text = `✨ ${user.name}'s PalmVerse Reading\n\n${result.overallSummary}\n\nGet your own reading at PalmVerse.`;
-    if (navigator.share) {
-      await navigator.share({ title: "My PalmVerse Reading", text });
-    } else {
-      await navigator.clipboard.writeText(text);
-      alert("Reading copied to clipboard!");
-    }
-  };
-
-  // ── Read Again ───────────────────────────────────────────────────────────
   const handleReadAgain = () => {
     dispatch({ type: "RESET" });
     navigate("/");
   };
+
+  const lines = Object.entries(result.lines);
 
   return (
     <div className="min-h-dvh bg-void bg-mystic-aura pb-20">
@@ -150,24 +166,20 @@ export default function ResultsPage() {
             </div>
 
             <h1 className="font-serif text-4xl md:text-5xl text-gradient-mystic mb-1">
-              {user.name}'s
+              Palm Structure
             </h1>
             <h2 className="font-serif text-2xl md:text-3xl text-text-primary mb-4">
-              Palm Reading
+              Analysis Complete
             </h2>
 
             {/* User details pill */}
             <div className="flex items-center justify-center gap-4 flex-wrap mb-6">
-              {user.dateOfBirth && (
-                <span className="text-text-muted text-xs px-3 py-1 rounded-full border border-border/50 bg-surface/40">
-                  Born {new Date(user.dateOfBirth + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
-                </span>
-              )}
-              {user.placeOfBirth && (
-                <span className="text-text-muted text-xs px-3 py-1 rounded-full border border-border/50 bg-surface/40">
-                  {user.placeOfBirth}
-                </span>
-              )}
+              <span className="text-text-muted text-xs px-3 py-1 rounded-full border border-border/50 bg-surface/40">
+                Image: {result.image_id}
+              </span>
+              <span className="text-text-muted text-xs px-3 py-1 rounded-full border border-border/50 bg-surface/40">
+                Res: {result.image_metadata.normalized_width}x{result.image_metadata.normalized_height}
+              </span>
             </div>
           </motion.div>
         </div>
@@ -181,16 +193,25 @@ export default function ResultsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <p className="text-text-muted text-xs uppercase tracking-widest mb-3">Overall Reading</p>
-          <p className="font-serif text-lg text-text-primary leading-relaxed italic">
-            "{result.overallSummary}"
-          </p>
+          <p className="text-text-muted text-xs uppercase tracking-widest mb-3">CV Pipeline Metrics</p>
+          <div className="flex justify-between items-center border-b border-border/30 pb-3 mb-3">
+             <span className="text-text-secondary text-sm">Major Lines Detected</span>
+             <span className="text-mystic-300 font-medium">{result.summary.detected_major_lines}</span>
+          </div>
+          <div className="flex justify-between items-center border-b border-border/30 pb-3 mb-3">
+             <span className="text-text-secondary text-sm">Line Groupings</span>
+             <span className="text-mystic-300 font-medium">{result.summary.total_major_line_groups}</span>
+          </div>
+          <div className="flex justify-between items-center">
+             <span className="text-text-secondary text-sm">Average Confidence</span>
+             <span className="text-mystic-300 font-medium">{Math.round(result.summary.average_confidence * 100)}%</span>
+          </div>
         </motion.div>
 
-        {/* ── Category cards ── */}
+        {/* ── Line Feature cards ── */}
         <div className="space-y-3">
-          {categories.map((cat, i) => (
-            <CategoryCard key={cat.label} cat={cat} index={i} />
+          {lines.map(([lineName, features], i) => (
+            <LineCard key={lineName} lineName={lineName} features={features} index={i} />
           ))}
         </div>
 
@@ -202,9 +223,8 @@ export default function ResultsPage() {
           transition={{ delay: 0.9 }}
         >
           <p className="text-text-muted text-xs text-center leading-relaxed">
-            PalmVerse is designed for entertainment and self-reflection.
-            Palm readings are not scientific predictions and should not replace
-            professional advice.
+            This data is derived directly from the Phase 6.0 Computer Vision architecture.
+            No palmistry interpretation or predictive logic is applied in this step.
           </p>
         </motion.div>
 
@@ -217,17 +237,10 @@ export default function ResultsPage() {
         >
           <button
             onClick={handleReadAgain}
-            className="btn-ghost flex items-center gap-2 flex-1 justify-center text-sm"
-          >
-            <RotateCcw className="w-4 h-4" />
-            Read Again
-          </button>
-          <button
-            onClick={handleShare}
             className="btn-primary flex items-center gap-2 flex-1 justify-center text-sm"
           >
-            <Share2 className="w-4 h-4" />
-            Share
+            <RotateCcw className="w-4 h-4" />
+            Analyse Another Image
           </button>
         </motion.div>
       </div>

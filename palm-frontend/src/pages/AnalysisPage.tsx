@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { usePalmReading } from "../context/PalmReadingContext";
-import { generateReading } from "../services/mockPalmAnalysis";
+import { analyzePalm } from "../services/apiClient";
 
 const STAGES = [
   { pct: 0,  label: "Preparing your palm image…"       },
@@ -52,6 +52,8 @@ export default function AnalysisPage() {
   const [scanY, setScanY]       = useState(0);
   const calledRef               = useRef(false);
 
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
   // Guard: redirect if no image or user
   useEffect(() => {
     if (!state.palmImage || !state.userDetails) {
@@ -61,6 +63,8 @@ export default function AnalysisPage() {
 
   // ── Animated progress driver ─────────────────────────────────────────────
   useEffect(() => {
+    if (errorMsg) return; // stop progress if error
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) { clearInterval(interval); return 100; }
@@ -70,7 +74,7 @@ export default function AnalysisPage() {
       });
     }, 80);
     return () => clearInterval(interval);
-  }, []);
+  }, [errorMsg]);
 
   // Update stage label based on progress
   useEffect(() => {
@@ -95,17 +99,31 @@ export default function AnalysisPage() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  // ── Trigger mock analysis when progress completes ─────────────────────────
+  // ── Trigger API analysis ─────────────────────────────────────────
   useEffect(() => {
-    if (progress < 100 || calledRef.current) return;
+    if (calledRef.current) return;
     calledRef.current = true;
 
     if (!state.userDetails || !state.palmImage) return;
-    generateReading(state.userDetails, state.palmImage).then((result) => {
-      dispatch({ type: "SET_RESULT", payload: result });
-      navigate("/results");
-    });
-  }, [progress]);
+
+    analyzePalm(state.palmImage)
+      .then((result) => {
+        dispatch({ type: "SET_RESULT", payload: result });
+        // wait for progress to visually reach 100% before redirecting
+        const checkProgress = setInterval(() => {
+          setProgress((p) => {
+            if (p >= 100) {
+              clearInterval(checkProgress);
+              navigate("/results");
+            }
+            return p;
+          });
+        }, 100);
+      })
+      .catch((err) => {
+        setErrorMsg(err.message);
+      });
+  }, []);
 
   const currentLabel = STAGES[stageIdx]?.label ?? "";
 
@@ -173,6 +191,24 @@ export default function AnalysisPage() {
         <p className="text-text-muted text-xs text-center">
           Analysing palm line patterns and characteristics…
         </p>
+        {/* Error State */}
+        {errorMsg && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center gap-4 mt-4"
+          >
+            <div className="p-3 bg-red-950/40 border border-red-500/50 rounded-xl text-red-200 text-sm text-center">
+              {errorMsg}
+            </div>
+            <button
+              onClick={() => navigate("/capture")}
+              className="btn-ghost"
+            >
+              Go Back and Try Again
+            </button>
+          </motion.div>
+        )}
       </motion.div>
     </div>
   );

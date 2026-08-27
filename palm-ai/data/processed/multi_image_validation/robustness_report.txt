@@ -4,68 +4,68 @@ PHASE 5.6 - ROBUSTNESS REPORT
 Image   : IMG_0005.jpg (id=IMG_0005)
 Status  : SUCCESS
 Candidates : 20
-Groups     : 15
+Groups     : 12
 min_conf   : 0.102
-avg_conf   : 0.487
+avg_conf   : 0.522
 max_conf   : 0.925
-low_conf_count : 7 (ratio=0.467)
-Classes    : LifeLine=2, HeadLine=4, HeartLine=4, FateLine=0, Unknown=5
-Duration   : 0.67s
+low_conf_count : 5 (ratio=0.417)
+Classes    : LifeLine=2, HeadLine=4, HeartLine=4, FateLine=0, Unknown=2
+Duration   : 0.81s
 
 Image   : IMG_0007.jpg (id=IMG_0007)
 Status  : SUCCESS
 Candidates : 16
-Groups     : 14
+Groups     : 13
 min_conf   : 0.21
 avg_conf   : 0.533
 max_conf   : 0.789
-low_conf_count : 4 (ratio=0.286)
-Classes    : LifeLine=1, HeadLine=3, HeartLine=1, FateLine=0, Unknown=9
-Duration   : 0.5s
+low_conf_count : 4 (ratio=0.308)
+Classes    : LifeLine=1, HeadLine=3, HeartLine=1, FateLine=0, Unknown=8
+Duration   : 0.56s
 
 Image   : IMG_0016.jpg (id=IMG_0016)
 Status  : SUCCESS
 Candidates : 25
-Groups     : 16
+Groups     : 14
 min_conf   : 0.252
-avg_conf   : 0.57
+avg_conf   : 0.577
 max_conf   : 0.932
-low_conf_count : 5 (ratio=0.312)
-Classes    : LifeLine=3, HeadLine=2, HeartLine=2, FateLine=3, Unknown=6
-Duration   : 0.5s
+low_conf_count : 5 (ratio=0.357)
+Classes    : LifeLine=3, HeadLine=2, HeartLine=2, FateLine=3, Unknown=4
+Duration   : 0.58s
 
 Image   : IMG_0020.jpg (id=IMG_0020)
 Status  : SUCCESS
 Candidates : 11
-Groups     : 11
-min_conf   : 0.219
-avg_conf   : 0.458
+Groups     : 8
+min_conf   : 0.233
+avg_conf   : 0.558
 max_conf   : 0.936
-low_conf_count : 6 (ratio=0.545)
-Classes    : LifeLine=1, HeadLine=4, HeartLine=2, FateLine=0, Unknown=4
-Duration   : 0.46s
+low_conf_count : 4 (ratio=0.5)
+Classes    : LifeLine=1, HeadLine=4, HeartLine=2, FateLine=0, Unknown=1
+Duration   : 0.54s
 
 Image   : IMG_0022.jpg (id=IMG_0022)
 Status  : SUCCESS
 Candidates : 20
-Groups     : 13
+Groups     : 9
 min_conf   : 0.178
-avg_conf   : 0.427
-max_conf   : 0.58
-low_conf_count : 10 (ratio=0.769)
-Classes    : LifeLine=0, HeadLine=2, HeartLine=2, FateLine=0, Unknown=9
-Duration   : 0.46s
+avg_conf   : 0.455
+max_conf   : 0.898
+low_conf_count : 6 (ratio=0.667)
+Classes    : LifeLine=0, HeadLine=2, HeartLine=2, FateLine=0, Unknown=5
+Duration   : 0.51s
 
 Image   : test_palm.jpg (id=test_palm)
 Status  : SUCCESS
 Candidates : 29
-Groups     : 21
+Groups     : 16
 min_conf   : 0.214
-avg_conf   : 0.568
+avg_conf   : 0.579
 max_conf   : 0.927
-low_conf_count : 7 (ratio=0.333)
-Classes    : LifeLine=1, HeadLine=3, HeartLine=8, FateLine=1, Unknown=8
-Duration   : 0.54s
+low_conf_count : 5 (ratio=0.312)
+Classes    : LifeLine=1, HeadLine=3, HeartLine=8, FateLine=1, Unknown=3
+Duration   : 0.62s
 
 ------------------------------------------------------------
 OVERALL FINDINGS
@@ -73,8 +73,8 @@ Images processed   : 6
 Successful         : 6
 Failed             : 0
 Avg candidate count: 20.17
-Avg avg_confidence : 0.507
-Avg min_confidence : 0.196
+Avg avg_confidence : 0.537
+Avg min_confidence : 0.198
 
 Per-image candidate counts:
   IMG_0005: 20
@@ -85,10 +85,10 @@ Per-image candidate counts:
   test_palm: 29
 
 Per-image avg confidence:
-  IMG_0005: 0.487
+  IMG_0005: 0.522
   IMG_0007: 0.533
-  IMG_0016: 0.57
-  IMG_0020: 0.458
-  IMG_0022: 0.427
-  test_palm: 0.568
+  IMG_0016: 0.577
+  IMG_0020: 0.558
+  IMG_0022: 0.455
+  test_palm: 0.579
 

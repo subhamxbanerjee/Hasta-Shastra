@@ -12,7 +12,8 @@
       "orientation": 158.61,
       "orient_score": 0.0,
       "orient_in_range": false,
-      "orient_delta_deg": 108.61,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 58.61,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
     "component_ids": [
@@ -39,6 +40,7 @@
       "orientation": 79.5,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -54,33 +56,6 @@
     "curvature": 0.5566627610129478
   },
   {
-    "id": 2,
-    "class": "Unknown",
-    "confidence": 0.529,
-    "confidence_reasons": {
-      "region": "Unknown",
-      "length": 126.47,
-      "length_score": 0.316,
-      "curvature": 0.4209,
-      "curvature_score": 0.719,
-      "orientation": 82.3,
-      "orient_score": 0.5,
-      "orient_in_range": false,
-      "orient_delta_deg": null,
-      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
-    },
-    "component_ids": [
-      2
-    ],
-    "centroid": {
-      "x": 292.0,
-      "y": 64.53333282470703
-    },
-    "length": 126.46803605556488,
-    "orientation": 82.30084221496625,
-    "curvature": 0.42085868763629347
-  },
-  {
     "id": 3,
     "class": "Unknown",
     "confidence": 0.688,
@@ -93,6 +68,7 @@
       "orientation": 10.45,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -120,6 +96,7 @@
       "orientation": 168.22,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -147,6 +124,7 @@
       "orientation": 148.88,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -175,6 +153,7 @@
       "orientation": 158.65,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -202,6 +181,7 @@
       "orientation": 21.89,
       "orient_score": 1.0,
       "orient_in_range": true,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -229,6 +209,7 @@
       "orientation": 62.39,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -256,7 +237,8 @@
       "orientation": 156.24,
       "orient_score": 0.0,
       "orient_in_range": false,
-      "orient_delta_deg": 106.24,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 56.24,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
     "component_ids": [
@@ -283,6 +265,7 @@
       "orientation": 79.66,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -310,6 +293,7 @@
       "orientation": 12.92,
       "orient_score": 1.0,
       "orient_in_range": true,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -337,6 +321,7 @@
       "orientation": 63.02,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -365,6 +350,7 @@
       "orientation": 9.03,
       "orient_score": 0.0,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": 50.97,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },

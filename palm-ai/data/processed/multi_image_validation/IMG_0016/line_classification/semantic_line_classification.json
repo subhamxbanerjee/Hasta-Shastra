@@ -12,6 +12,7 @@
       "orientation": 19.21,
       "orient_score": 1.0,
       "orient_in_range": true,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -27,33 +28,6 @@
     "curvature": 0.5061460694479384
   },
   {
-    "id": 1,
-    "class": "Unknown",
-    "confidence": 0.519,
-    "confidence_reasons": {
-      "region": "Unknown",
-      "length": 102.43,
-      "length_score": 0.256,
-      "curvature": 0.413,
-      "curvature_score": 0.725,
-      "orientation": 102.41,
-      "orient_score": 0.5,
-      "orient_in_range": false,
-      "orient_delta_deg": null,
-      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
-    },
-    "component_ids": [
-      1
-    ],
-    "centroid": {
-      "x": 241.27272033691406,
-      "y": 90.92562103271484
-    },
-    "length": 102.42640614509583,
-    "orientation": 102.41312521587827,
-    "curvature": 0.41300970053260533
-  },
-  {
     "id": 2,
     "class": "Unknown",
     "confidence": 0.524,
@@ -66,6 +40,7 @@
       "orientation": 91.88,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -81,33 +56,6 @@
     "curvature": 0.406701671008134
   },
   {
-    "id": 3,
-    "class": "Unknown",
-    "confidence": 0.523,
-    "confidence_reasons": {
-      "region": "Unknown",
-      "length": 117.78,
-      "length_score": 0.294,
-      "curvature": 0.4291,
-      "curvature_score": 0.714,
-      "orientation": 17.95,
-      "orient_score": 0.5,
-      "orient_in_range": false,
-      "orient_delta_deg": null,
-      "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
-    },
-    "component_ids": [
-      4
-    ],
-    "centroid": {
-      "x": 343.68182373046875,
-      "y": 75.90908813476562
-    },
-    "length": 117.78174448013306,
-    "orientation": 17.946276244502986,
-    "curvature": 0.42907739180712445
-  },
-  {
     "id": 4,
     "class": "Unknown",
     "confidence": 0.546,
@@ -120,6 +68,7 @@
       "orientation": 19.83,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -147,6 +96,7 @@
       "orientation": 104.61,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -174,6 +124,7 @@
       "orientation": 94.99,
       "orient_score": 0.5,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -202,6 +153,7 @@
       "orientation": 108.25,
       "orient_score": 1.0,
       "orient_in_range": true,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -230,7 +182,8 @@
       "orientation": 169.26,
       "orient_score": 0.0,
       "orient_in_range": false,
-      "orient_delta_deg": 119.26,
+      "orient_bimodal_headline": false,
+      "orient_delta_deg": 69.26,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
     "component_ids": [
@@ -259,6 +212,7 @@
       "orientation": 159.56,
       "orient_score": 0.0,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": 119.56,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -289,6 +243,7 @@
       "orientation": 157.89,
       "orient_score": 0.0,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": 37.89,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -316,6 +271,7 @@
       "orientation": 22.45,
       "orient_score": 1.0,
       "orient_in_range": true,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -343,6 +299,7 @@
       "orientation": 88.09,
       "orient_score": 1.0,
       "orient_in_range": true,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -370,6 +327,7 @@
       "orientation": 105.69,
       "orient_score": 1.0,
       "orient_in_range": true,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": null,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -398,6 +356,7 @@
       "orientation": 41.52,
       "orient_score": 0.384,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": 18.48,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },
@@ -426,6 +385,7 @@
       "orientation": 174.37,
       "orient_score": 0.0,
       "orient_in_range": false,
+      "orient_bimodal_headline": false,
       "orient_delta_deg": 54.37,
       "weights": "length\u00d70.2 + curvature\u00d70.3 + orient\u00d70.5"
     },

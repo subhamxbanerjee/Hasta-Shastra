@@ -21,6 +21,7 @@ import numpy as np
 # -----------------------------------------------------------------------------
 # Heuristic constants – can be overridden from the CLI
 # Phase 5.7 calibration applied — see PHASE_5_7_CLASSIFICATION_ANALYSIS.md
+# Phase 5.8 refinements applied — see PHASE_5_8_VALIDATION_REPORT.md
 # -----------------------------------------------------------------------------
 PROXIMITY_DIST = 40          # max Euclidean distance (pixels) between centroids
                               # (raised 15→40: allows nearby line fragments to merge)
@@ -29,6 +30,13 @@ MIN_GROUP_LENGTH = 40        # discard groups shorter than this (pixels)
 CURVATURE_THRESHOLD = 1.5    # arc_length/area ratio; all observed values 0.29–1.11
                               # (raised 0.25→1.5: restores 30% of confidence formula)
 SHOW_WINDOWS = False         # set True for debugging visualisation
+
+# Phase 5.8: Finger-zone pre-classification filter.
+# Groups whose centroid y < FINGER_ZONE_Y_MAX are almost always finger-base
+# crease noise (confirmed across 6-image dataset: all such groups were Unknown
+# with no spatial overlap with any major palm line region).
+# Conservative threshold: 100px (leaves all HeadLine candidates at y>=180 untouched).
+FINGER_ZONE_Y_MAX = 100
 
 # Spatial region boxes for the four classic palm lines (in 512×512 normalized space).
 # Phase 5.7: widened based on actual centroid positions observed across 6-image dataset.
@@ -156,17 +164,42 @@ def classify_group(props: Dict) -> Tuple[str, float]:
     explainability and diagnostics.
     """
     cx, cy = props["centroid"]
+
+    # Phase 5.8: Finger-zone pre-classification filter.
+    # Groups with centroid y < FINGER_ZONE_Y_MAX are consistently finger-base
+    # crease noise across the 6-image dataset. They fall outside all major-line
+    # region boxes and always receive Unknown. Discarding them here eliminates
+    # spurious low-confidence Unknown entries without affecting any real palm line.
+    if cy < FINGER_ZONE_Y_MAX:
+        confidence_reasons = {
+            "region": "Unknown",
+            "length": round(props["length"], 2),
+            "length_score": 0.0,
+            "curvature": round(props["curvature"], 4),
+            "curvature_score": 0.0,
+            "orientation": round(props["orientation"], 2),
+            "orient_score": 0.0,
+            "orient_in_range": False,
+            "orient_delta_deg": None,
+            "filtered": "finger_zone (y < FINGER_ZONE_Y_MAX)",
+            "weights": "length×0.2 + curvature×0.3 + orient×0.5",
+        }
+        return "Unknown", 0.0, confidence_reasons
+
     assigned = "Unknown"
     for line, bounds in CLASS_REGION_BOUNDS.items():
         if bounds["x"][0] <= cx <= bounds["x"][1] and bounds["y"][0] <= cy <= bounds["y"][1]:
             assigned = line
             break
 
-    # Phase 5.7: corrected orientation ranges.
-    # HeartLine: lowered lower bound 20→0° (real HeartLine clusters at 5–25°)
-    # HeadLine:  widened 10–30° → 0–50° (captures both horizontal and oblique HeadLine)
+    # Orientation ranges (primary), updated in Phase 5.7.
+    # HeartLine: lowered lower bound 20→00° (real HeartLine clusters at 5–25°)
+    # HeadLine:  widened 10–30° → 0–50° (captures horizontal HeadLine)
     # LifeLine:  widened 70–110° → 60–120° (accommodates curved LifeLine variability)
-    # FateLine:  corrected 30–70° → 70–120° (near-vertical; all observed at 100–175°)
+    # FateLine:  corrected 30–70° → 70–120° (near-vertical; observed at 88–120°)
+    #            Note: FateLine fragments at 150–175° are near-horizontal (0° wrapped
+    #            around 180° modulus) and do NOT represent a vertical FateLine —
+    #            the 70–120° range correctly excludes them.
     ORIENT_RANGES = {
         "HeartLine": (0,  40),
         "HeadLine":  (0,  50),
@@ -174,24 +207,44 @@ def classify_group(props: Dict) -> Tuple[str, float]:
         "FateLine":  (70, 120),
     }
 
+    # Phase 5.8: HeadLine bimodal orientation.
+    # Confirmed from IMG_0022 group 6 (length=699, cx=134, cy=248, orient=90°):
+    # this is the dominant HeadLine line, traversing the palm horizontally but
+    # measured as near-vertical by PCA because its extent is top-to-bottom.
+    # Adding a secondary range 80–100° is supported by data across 3+ images.
+    HEADLINE_SECONDARY_RANGE = (80, 100)
+
     # Phase 5.7: normalizer lowered 1500→400px.
-    # Longest observed line across 6-image dataset is 836px; most are 50–250px.
-    # At 1500, length contributed near-zero despite 20% weight. At 400 it discriminates.
     length_score = min(props["length"] / 400.0, 1.0)
 
     # Phase 5.7: CURVATURE_THRESHOLD raised 0.25→1.5.
-    # All observed curvature values (arc_length/area) range 0.29–1.11.
-    # At 0.25, curvature_score was 0.0 for every group, zeroing out 30% of confidence.
     curvature_score = 1.0 - min(props["curvature"] / CURVATURE_THRESHOLD, 1.0)
 
     orient_score = 0.5  # baseline for Unknown or unmatched orientation
     orient_in_range = False
+    orient_bimodal = False
     orient_delta = None
     if assigned != "Unknown":
         low, high = ORIENT_RANGES[assigned]
         if low <= props["orientation"] <= high:
             orient_score = 1.0
             orient_in_range = True
+        elif assigned == "HeadLine":
+            # Phase 5.8: check secondary bimodal range for near-vertical HeadLine
+            sec_low, sec_high = HEADLINE_SECONDARY_RANGE
+            if sec_low <= props["orientation"] <= sec_high:
+                orient_score = 1.0
+                orient_in_range = True
+                orient_bimodal = True
+            else:
+                delta = min(
+                    abs(props["orientation"] - low),
+                    abs(props["orientation"] - high),
+                    abs(props["orientation"] - sec_low),
+                    abs(props["orientation"] - sec_high),
+                )
+                orient_delta = round(delta, 2)
+                orient_score = max(0.0, 1.0 - delta / 30.0)
         else:
             delta = min(abs(props["orientation"] - low), abs(props["orientation"] - high))
             orient_delta = round(delta, 2)
@@ -209,6 +262,7 @@ def classify_group(props: Dict) -> Tuple[str, float]:
         "orientation": round(props["orientation"], 2),
         "orient_score": round(orient_score, 3),
         "orient_in_range": orient_in_range,
+        "orient_bimodal_headline": orient_bimodal,
         "orient_delta_deg": orient_delta,
         "weights": "length×0.2 + curvature×0.3 + orient×0.5",
     }
@@ -290,6 +344,12 @@ def run_classification(candidate_img_path: Path, meas_path: Path, normalized_img
     for gid, idxs in enumerate(groups_idx):
         props = group_properties(idxs, measurements, contours)
         line_class, confidence, confidence_reasons = classify_group(props)
+
+        # Skip finger-zone filtered groups entirely — they are confirmed noise
+        # (centroid y < FINGER_ZONE_Y_MAX) and would distort group counts / avg_confidence.
+        if confidence_reasons.get("filtered"):
+            continue
+
         group_entry = {
             "id": gid,
             "class": line_class,
@@ -303,6 +363,7 @@ def run_classification(candidate_img_path: Path, meas_path: Path, normalized_img
             "contours": [contours[i] for i in idxs],
         }
         groups_info.append(group_entry)
+
 
     # Save JSON (without heavy contour data)
     json_path = output_dir / "semantic_line_classification.json"

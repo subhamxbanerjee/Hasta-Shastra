@@ -35,6 +35,7 @@ from palm_normalization import run_normalization
 from palm_line_enhancement import run_enhancement
 from palm_line_candidates import run_candidate_extraction
 from palm_line_classification import run_classification
+from palm_feature_extraction import run_feature_extraction
 
 
 # ---------------------------------------------------------------------------
@@ -60,8 +61,9 @@ def process_image(
     enh_dir    = base_dir / "line_enhancement"
     cand_dir   = base_dir / "line_candidates"
     class_dir  = base_dir / "line_classification"
+    feat_dir   = base_dir / "features"
 
-    for d in [norm_dir, enh_dir, cand_dir, class_dir]:
+    for d in [norm_dir, enh_dir, cand_dir, class_dir, feat_dir]:
         d.mkdir(parents=True, exist_ok=True)
 
     start_time = time.time()
@@ -162,6 +164,29 @@ def process_image(
         }
 
     # ------------------------------------------------------------------
+    # Stage 5 – Feature Extraction
+    # ------------------------------------------------------------------
+    print(f"[STAGE 5] Feature Extraction -> {feat_dir}")
+    try:
+        features = run_feature_extraction(
+            image_id=image_id,
+            classification_results=groups,
+            normalized_img_path=palm_512_path,
+            output_dir=feat_dir
+        )
+    except Exception as exc:
+        duration = round(time.time() - start_time, 2)
+        print(f"  [ERROR] Feature extraction failed: {exc}")
+        return {
+            "image_id": image_id,
+            "image": img_path.name,
+            "status": "failed",
+            "stage": "feature_extraction",
+            "error": str(exc),
+            "duration_sec": duration,
+        }
+
+    # ------------------------------------------------------------------
     # Build per-image summary record
     # ------------------------------------------------------------------
     class_counts = {"LifeLine": 0, "HeadLine": 0, "HeartLine": 0, "FateLine": 0, "Unknown": 0}
@@ -200,6 +225,7 @@ def process_image(
         "low_confidence_count": low_conf_count,
         "low_confidence_ratio": low_conf_ratio,
         "low_confidence_candidates": low_conf_candidates,
+        "detected_lines": [k for k, v in features["lines"].items() if v["detected"]],
         "output_dir": str(base_dir),
         "duration_sec": duration,
     }
@@ -344,6 +370,7 @@ def main(
                         cls_counts.get("Unknown", 0),
                     )
                 )
+                rpt.write(f"Detected   : {', '.join(rec.get('detected_lines', []))}\n")
                 rpt.write(f"Duration   : {rec.get('duration_sec')}s\n")
             else:
                 rpt.write(f"Stage failed: {rec.get('stage')}\n")

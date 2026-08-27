@@ -282,11 +282,28 @@ data/processed/multi_image_validation/<image_stem>/
 **All Phase 5.8 pass criteria met** (finger-zone noise eliminated, HeadLine bimodal range validated, avg_conf raised to 0.537).
 
 **Remaining for Phase 6:**
-- Next phase: Data extraction and frontend integration.
+- [x] Phase 6.0 Structured Palm Feature Extraction (`palm_features.json`).
+- [x] Phase 6.1 Frontend Integration (API).
 
+## Phase 6 — Structured Feature Extraction & API
+### ✅ Milestone 6.0 — Structured Palm Feature Extraction
+**Date:** 2026-08-27
+**Status:** IMPLEMENTATION COMPLETE — VALIDATION COMPLETE
 
-## Phase 6 — Semantic Segmentation
-_Not started_
+- [x] Implemented `palm_feature_extraction.py` layer.
+- [x] Created deterministic JSON feature schema extracting lengths, fragments, weighted orientation, and curvature.
+- [x] Integrated as Stage 5 into `palm_multi_image_validation.py`.
+- [x] Verified full per-image isolation and non-regression of Phase 5.8 classification metrics.
+- [x] Documented schema in `docs/PALM_FEATURE_SCHEMA.md`.
+
+### ⏳ Milestone 6.1 — Backend API Integration
+**Date:** 2026-08-27
+**Status:** IMPLEMENTATION COMPLETE — VALIDATION PENDING
+
+- [x] Implemented FastAPI backend architecture (`backend/main.py`, `backend/schemas.py`, `backend/services/analysis_service.py`).
+- [x] API safely wraps and orchestrates the existing CV scripts.
+- [x] Implemented strict per-request isolation for generated files (`data/processed/api_requests/<request_id>/`).
+- [x] Created `docs/API_CONTRACT.md`.
 
 ## Phase 7 — Feature Extraction
 _Not started_

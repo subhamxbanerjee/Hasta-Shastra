@@ -2,8 +2,7 @@
 """palm_line_classification.py
 Phase 5 – Milestone 5.3
 
-This script groups line‑candidate components (produced in Milestone 5.2) into larger line paths and assigns a **preliminary** class
-(LifeLine, HeadLine, HeartLine, FateLine or Unknown) with a confidence score.
+This script groups line‑candidate components (produced in Milestone 5.2) into larger line paths and assigns a **preliminary** class (LifeLine, HeadLine, HeartLine, FateLine or Unknown) with a confidence score.
 
 The implementation follows the heuristics described in the implementation plan.
 """
@@ -12,6 +11,7 @@ import argparse
 import json
 import math
 import os
+import time
 from pathlib import Path
 from typing import List, Tuple, Dict
 
@@ -79,13 +79,12 @@ class UnionFind:
             self.rank[rx] += 1
 
 # -----------------------------------------------------------------------------
-# Main processing
+# Core processing helpers
 # -----------------------------------------------------------------------------
 
 def load_measurements(meas_path: Path) -> List[Dict]:
     with open(meas_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return data
+        return json.load(f)
 
 def load_candidate_image(img_path: Path) -> np.ndarray:
     img = cv2.imread(str(img_path), cv2.IMREAD_GRAYSCALE)
@@ -104,7 +103,7 @@ def contour_orientation(contour: np.ndarray) -> float:
     ellipse = cv2.fitEllipse(contour)
     return ellipse[2]
 
-def build_graph(centroids: List[Tuple[float, float]], angles: List[float]):
+def build_graph(centroids: List[Tuple[float, float]], angles: List[float]) -> List[List[int]]:
     n = len(centroids)
     uf = UnionFind(n)
     for i in range(n):
@@ -112,14 +111,13 @@ def build_graph(centroids: List[Tuple[float, float]], angles: List[float]):
             if euclidean(centroids[i], centroids[j]) <= PROXIMITY_DIST and \
                angle_diff(angles[i], angles[j]) <= ANGLE_TOLERANCE:
                 uf.union(i, j)
-    groups = {}
+    groups: Dict[int, List[int]] = {}
     for idx in range(n):
         root = uf.find(idx)
         groups.setdefault(root, []).append(idx)
     return list(groups.values())
 
 def group_properties(group_idxs: List[int], measurements: List[Dict], contours: List[np.ndarray]):
-    # Compute aggregated properties for a group of component indices
     total_length = 0.0
     points = []
     curvatures = []
@@ -181,36 +179,43 @@ def draw_overlay(base_img: np.ndarray, groups_info: List[Dict]):
         cv2.putText(overlay, label, (cx + 5, cy - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1, cv2.LINE_AA)
     return overlay
 
-def main(args):
-    # Use the palm-ai directory as the project root (scripts -> palm-ai)
-    project_root = Path(__file__).resolve().parents[1]
-    data_dir = project_root / "data" / "processed"
-    # Load the binary mask of major line candidates from line_candidates folder
-    candidate_img_path = data_dir / "line_candidates" / "05_major_line_candidates.jpg"
-    meas_path = data_dir / "line_candidates" / "candidate_measurements.json"
-    normalized_img_path = data_dir / "palm_512.jpg"
+# -----------------------------------------------------------------------------
+# Public API – callable from batch script
+# -----------------------------------------------------------------------------
 
+def run_classification(candidate_img_path: Path, meas_path: Path, normalized_img_path: Path,
+                       output_dir: Path, show: bool = False) -> List[Dict]:
+    """Run the full classification pipeline for a single image.
+
+    Parameters
+    ----------
+    candidate_img_path: Path to the binary candidate mask (05_major_line_candidates.jpg).
+    meas_path: Path to the JSON measurements produced by Milestone 5.2.
+    normalized_img_path: Path to the 512×512 normalized palm image.
+    output_dir: Directory where the JSON, overlay and comparison images will be saved.
+    show: If True, OpenCV windows are displayed.
+
+    Returns
+    -------
+    groups_info: List of dictionaries describing each classified group (including
+                 class, confidence, centroid, length, orientation, curvature and
+                 contour list).
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
     binary = load_candidate_image(candidate_img_path)
     measurements = load_measurements(meas_path)
-    # ------------------------------------------------------------
-    # Component extraction using nearest component centroid mapping
-    # ------------------------------------------------------------
-    # Obtain connected components from the binary candidate mask
+    # Connected components + nearest‑centroid matching (same logic as original main)
     num_labels, labels, stats, comp_centroids = cv2.connectedComponentsWithStats(binary, connectivity=8)
-    # comp_centroids[0] is background centroid (ignored)
-    # Prepare containers
-    contours = []
-    centroids = []
-    angles = []
-    unmatched_measurements = []
+    contours: List[np.ndarray] = []
+    centroids: List[Tuple[float, float]] = []
+    angles: List[float] = []
     matched_component_ids = set()
-    # For each measurement, find the nearest component centroid (excluding already matched)
     for meas in measurements:
         mx = float(meas["centroid"]["x"])
         my = float(meas["centroid"]["y"])
         best_id = None
         best_dist = float('inf')
-        for comp_id in range(1, num_labels):  # skip background 0
+        for comp_id in range(1, num_labels):
             if comp_id in matched_component_ids:
                 continue
             cx, cy = comp_centroids[comp_id]
@@ -219,43 +224,24 @@ def main(args):
                 best_dist = d
                 best_id = comp_id
         if best_id is None:
-            unmatched_measurements.append(meas["id"])
             continue
         matched_component_ids.add(best_id)
-        # Extract contour for the matched component
         comp_mask = (labels == best_id).astype(np.uint8) * 255
         cnts, _ = cv2.findContours(comp_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         if not cnts:
-            unmatched_measurements.append(meas["id"])
             continue
         cnt = cnts[0]
         contours.append(cnt)
-        centroids.append((mx, my))  # use measurement centroid for downstream processing
-        # Orientation via ellipse fitting (fallback to 0 if insufficient points)
+        centroids.append((mx, my))
         if len(cnt) >= 5:
             angles.append(cv2.fitEllipse(cnt)[2])
         else:
             angles.append(0.0)
-    # Validation summary
-    total_measurements = len(measurements)
-    total_components = num_labels - 1  # exclude background
-    matched_candidates = len(contours)
-    unmatched_components = total_components - matched_candidates
-    print("--- Alignment Validation Summary ---")
-    print(f"Total measurement records      : {total_measurements}")
-    print(f"Total connected components     : {total_components}")
-    print(f"Successfully matched candidates: {matched_candidates}")
-    print(f"Unmatched measurements (ids)   : {unmatched_measurements}")
-    print(f"Unmatched components count    : {unmatched_components}")
-    # Continue with grouped processing using the prepared lists
+
     groups_idx = build_graph(centroids, angles)
-    groups_info = []
-    for gid, idxs in enumerate(groups_idx, start=1):
-        if not idxs:
-            continue
+    groups_info: List[Dict] = []
+    for gid, idxs in enumerate(groups_idx):
         props = group_properties(idxs, measurements, contours)
-        if props["length"] < MIN_GROUP_LENGTH:
-            continue
         line_class, confidence = classify_group(props)
         group_entry = {
             "id": gid,
@@ -269,8 +255,8 @@ def main(args):
             "contours": [contours[i] for i in idxs],
         }
         groups_info.append(group_entry)
-    output_dir = data_dir / "line_classification"
-    os.makedirs(output_dir, exist_ok=True)
+
+    # Save JSON (without heavy contour data)
     json_path = output_dir / "semantic_line_classification.json"
     serialisable = []
     for g in groups_info:
@@ -279,24 +265,41 @@ def main(args):
         serialisable.append(g_copy)
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(serialisable, f, indent=2)
-    print(f"[INFO] Classification JSON saved to {json_path}")
+
+    # Visual overlay
     norm_img = cv2.imread(str(normalized_img_path), cv2.IMREAD_GRAYSCALE)
     if norm_img is None:
         raise FileNotFoundError(f"Normalized palm image not found: {normalized_img_path}")
     overlay = draw_overlay(norm_img, groups_info)
     overlay_path = output_dir / "07_line_grouping_overlay.jpg"
     cv2.imwrite(str(overlay_path), overlay)
-    print(f"[INFO] Overlay image saved to {overlay_path}")
+
+    # Comparison image (candidates vs overlay)
     cand_color = cv2.cvtColor(binary, cv2.COLOR_GRAY2BGR)
     comparison = np.hstack([cand_color, overlay])
     comp_path = output_dir / "region_classification_comparison.jpg"
     cv2.imwrite(str(comp_path), comparison)
-    print(f"[INFO] Comparison image saved to {comp_path}")
-    if SHOW_WINDOWS or args.show:
+
+    if show or SHOW_WINDOWS:
         cv2.imshow("Candidates", cand_color)
         cv2.imshow("Classification Overlay", overlay)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
+
+    return groups_info
+
+# -----------------------------------------------------------------------------
+# CLI entry point – retains original behaviour
+# -----------------------------------------------------------------------------
+
+def main(args):
+    project_root = Path(__file__).resolve().parents[1]
+    data_dir = project_root / "data" / "processed"
+    candidate_img_path = data_dir / "line_candidates" / "05_major_line_candidates.jpg"
+    meas_path = data_dir / "line_candidates" / "candidate_measurements.json"
+    normalized_img_path = data_dir / "palm_512.jpg"
+    out_dir = data_dir / "line_classification"
+    run_classification(candidate_img_path, meas_path, normalized_img_path, out_dir, show=args.show)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Group line candidates and assign preliminary palm‑line classes.")

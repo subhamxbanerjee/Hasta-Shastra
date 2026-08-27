@@ -1,0 +1,167 @@
+[
+  {
+    "id": 0,
+    "class": "HeadLine",
+    "confidence": 0.008,
+    "component_ids": [
+      0
+    ],
+    "centroid": {
+      "x": 287.7492370605469,
+      "y": 229.56495666503906
+    },
+    "length": 56.28427076339722,
+    "orientation": 92.79302202581182,
+    "curvature": 0.546449225407262
+  },
+  {
+    "id": 1,
+    "class": "Unknown",
+    "confidence": 0.265,
+    "component_ids": [
+      1
+    ],
+    "centroid": {
+      "x": 300.0335998535156,
+      "y": 14.260503768920898
+    },
+    "length": 115.19595801830292,
+    "orientation": 3.090667049630939,
+    "curvature": 0.45352739198730524
+  },
+  {
+    "id": 2,
+    "class": "Unknown",
+    "confidence": 0.264,
+    "component_ids": [
+      2
+    ],
+    "centroid": {
+      "x": 312.52630615234375,
+      "y": 2.8947367668151855
+    },
+    "length": 105.39696848392487,
+    "orientation": 3.6545573327385714,
+    "curvature": 0.4769093574978077
+  },
+  {
+    "id": 3,
+    "class": "Unknown",
+    "confidence": 0.268,
+    "component_ids": [
+      4
+    ],
+    "centroid": {
+      "x": 299.4705810546875,
+      "y": 57.72549057006836
+    },
+    "length": 134.26702558994293,
+    "orientation": 148.6558600894225,
+    "curvature": 0.3104439890855467
+  },
+  {
+    "id": 4,
+    "class": "Unknown",
+    "confidence": 0.257,
+    "component_ids": [
+      8
+    ],
+    "centroid": {
+      "x": 193.93939208984375,
+      "y": 135.84848022460938
+    },
+    "length": 54.18376553058624,
+    "orientation": 14.042560775719542,
+    "curvature": 0.6489073638524416
+  },
+  {
+    "id": 5,
+    "class": "HeadLine",
+    "confidence": 0.013,
+    "component_ids": [
+      14
+    ],
+    "centroid": {
+      "x": 216.0,
+      "y": 216.7857208251953
+    },
+    "length": 94.18376517295837,
+    "orientation": 88.03890742062721,
+    "curvature": 0.44742881104764637
+  },
+  {
+    "id": 6,
+    "class": "HeadLine",
+    "confidence": 0.014,
+    "component_ids": [
+      16
+    ],
+    "centroid": {
+      "x": 320.0294189453125,
+      "y": 313.9117736816406
+    },
+    "length": 102.81118214130402,
+    "orientation": 152.53335098960852,
+    "curvature": 0.5925716515777082
+  },
+  {
+    "id": 7,
+    "class": "HeadLine",
+    "confidence": 0.5,
+    "component_ids": [
+      17
+    ],
+    "centroid": {
+      "x": 175.44444274902344,
+      "y": 250.38888549804688
+    },
+    "length": 836.1635538339615,
+    "orientation": 3.3232142009421093,
+    "curvature": 0.3206763388353922
+  },
+  {
+    "id": 8,
+    "class": "Unknown",
+    "confidence": 0.274,
+    "component_ids": [
+      19
+    ],
+    "centroid": {
+      "x": 187.9199981689453,
+      "y": 349.760009765625
+    },
+    "length": 181.27921783924103,
+    "orientation": 67.40519633177335,
+    "curvature": 0.46481850608826286
+  },
+  {
+    "id": 9,
+    "class": "Unknown",
+    "confidence": 0.279,
+    "component_ids": [
+      22
+    ],
+    "centroid": {
+      "x": 96.02898406982422,
+      "y": 375.13043212890625
+    },
+    "length": 220.16652059555054,
+    "orientation": 19.597960194201377,
+    "curvature": 0.47655090934848404
+  },
+  {
+    "id": 10,
+    "class": "HeartLine",
+    "confidence": 0.425,
+    "component_ids": [
+      23
+    ],
+    "centroid": {
+      "x": 164.7142791748047,
+      "y": 435.1071472167969
+    },
+    "length": 93.55634891986847,
+    "orientation": 14.723398672821755,
+    "curvature": 0.6611756060685008
+  }
+]

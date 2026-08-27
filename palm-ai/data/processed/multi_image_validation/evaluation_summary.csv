@@ -1,0 +1,7 @@
+image_id,image,status,num_candidates,num_groups,min_confidence,avg_confidence,max_confidence,low_confidence_count,low_confidence_ratio,LifeLine,HeadLine,HeartLine,FateLine,Unknown,duration_sec
+IMG_0005,IMG_0005.jpg,success,20,18,0.007,0.202,0.516,17,0.944,3,2,4,0,9,3.66
+IMG_0007,IMG_0007.jpg,success,16,16,0.011,0.266,0.521,15,0.938,0,3,1,0,12,0.86
+IMG_0016,IMG_0016.jpg,success,25,22,0.008,0.207,0.51,21,0.955,3,0,4,3,12,0.79
+IMG_0020,IMG_0020.jpg,success,11,11,0.008,0.233,0.5,10,0.909,0,4,1,0,6,0.78
+IMG_0022,IMG_0022.jpg,success,20,18,0.008,0.231,0.426,18,1.0,1,0,3,0,14,0.74
+test_palm,test_palm.jpg,success,29,28,0.007,0.281,0.511,24,0.857,3,2,3,0,20,0.87

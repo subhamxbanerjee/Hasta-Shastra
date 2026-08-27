@@ -1,0 +1,94 @@
+PHASE 5.6 - ROBUSTNESS REPORT
+============================================================
+
+Image   : IMG_0005.jpg (id=IMG_0005)
+Status  : SUCCESS
+Candidates : 20
+Groups     : 18
+min_conf   : 0.007
+avg_conf   : 0.202
+max_conf   : 0.516
+low_conf_count : 17 (ratio=0.944)
+Classes    : LifeLine=3, HeadLine=2, HeartLine=4, FateLine=0, Unknown=9
+Duration   : 3.66s
+
+Image   : IMG_0007.jpg (id=IMG_0007)
+Status  : SUCCESS
+Candidates : 16
+Groups     : 16
+min_conf   : 0.011
+avg_conf   : 0.266
+max_conf   : 0.521
+low_conf_count : 15 (ratio=0.938)
+Classes    : LifeLine=0, HeadLine=3, HeartLine=1, FateLine=0, Unknown=12
+Duration   : 0.86s
+
+Image   : IMG_0016.jpg (id=IMG_0016)
+Status  : SUCCESS
+Candidates : 25
+Groups     : 22
+min_conf   : 0.008
+avg_conf   : 0.207
+max_conf   : 0.51
+low_conf_count : 21 (ratio=0.955)
+Classes    : LifeLine=3, HeadLine=0, HeartLine=4, FateLine=3, Unknown=12
+Duration   : 0.79s
+
+Image   : IMG_0020.jpg (id=IMG_0020)
+Status  : SUCCESS
+Candidates : 11
+Groups     : 11
+min_conf   : 0.008
+avg_conf   : 0.233
+max_conf   : 0.5
+low_conf_count : 10 (ratio=0.909)
+Classes    : LifeLine=0, HeadLine=4, HeartLine=1, FateLine=0, Unknown=6
+Duration   : 0.78s
+
+Image   : IMG_0022.jpg (id=IMG_0022)
+Status  : SUCCESS
+Candidates : 20
+Groups     : 18
+min_conf   : 0.008
+avg_conf   : 0.231
+max_conf   : 0.426
+low_conf_count : 18 (ratio=1.0)
+Classes    : LifeLine=1, HeadLine=0, HeartLine=3, FateLine=0, Unknown=14
+Duration   : 0.74s
+
+Image   : test_palm.jpg (id=test_palm)
+Status  : SUCCESS
+Candidates : 29
+Groups     : 28
+min_conf   : 0.007
+avg_conf   : 0.281
+max_conf   : 0.511
+low_conf_count : 24 (ratio=0.857)
+Classes    : LifeLine=3, HeadLine=2, HeartLine=3, FateLine=0, Unknown=20
+Duration   : 0.87s
+
+------------------------------------------------------------
+OVERALL FINDINGS
+Images processed   : 6
+Successful         : 6
+Failed             : 0
+Avg candidate count: 20.17
+Avg avg_confidence : 0.237
+Avg min_confidence : 0.008
+
+Per-image candidate counts:
+  IMG_0005: 20
+  IMG_0007: 16
+  IMG_0016: 25
+  IMG_0020: 11
+  IMG_0022: 20
+  test_palm: 29
+
+Per-image avg confidence:
+  IMG_0005: 0.202
+  IMG_0007: 0.266
+  IMG_0016: 0.207
+  IMG_0020: 0.233
+  IMG_0022: 0.231
+  test_palm: 0.281
+

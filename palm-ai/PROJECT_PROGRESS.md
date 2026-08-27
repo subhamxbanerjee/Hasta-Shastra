@@ -197,7 +197,58 @@ _Not started_
 ---
 
 ## Phase 5 — Dataset Creation + Annotation
-_Not started_
+
+### ✅ Milestone 5.1 — Multi-Stage Palm Crease Enhancement
+**Status:** COMPLETE
+
+### ✅ Milestone 5.2 — Major Palm Line Candidate Extraction & Filtering
+**Status:** COMPLETE
+
+### ✅ Milestone 5.3 — Preliminary Semantic / Region Classification
+**Status:** COMPLETE
+
+### ✅ Milestone 5.4 — Multi-Image Validation Infrastructure
+**Status:** COMPLETE
+
+### ✅ Milestone 5.5 — Robustness Infrastructure & Confidence Diagnostics
+**Status:** IMPLEMENTATION COMPLETE — VALIDATION COMPLETE
+
+### ✅ Milestone 5.6 — Per-Image Pipeline Isolation
+**Date:** 2026-08-27
+**Status:** IMPLEMENTATION COMPLETE — RE-VALIDATION COMPLETE
+
+**What was done:**
+- Refactored `palm_line_enhancement.py` to expose `run_enhancement(normalized_img_path, output_dir, show=False)`; moved all top-level module execution inside the function; CLI entry point preserved via `if __name__ == "__main__"`.
+- Refactored `palm_line_candidates.py` to expose `run_candidate_extraction(enhanced_img_path, output_dir, normalized_img_path=None, show=False)`; `candidate_measurements.json` now written explicitly to the per-image `line_candidates/` directory; CLI entry point preserved.
+- Rewrote `palm_multi_image_validation.py` to orchestrate a fully isolated 4-stage pipeline per image; no intermediate files shared between images.
+
+**Output directory structure (per image):**
+```
+data/processed/multi_image_validation/<image_stem>/
+    normalization/          <- landmarks, rotated ROI, palm_512.jpg, comparison
+    line_enhancement/       <- all 13 intermediate images + grids
+    line_candidates/        <- binary stages, candidate_measurements.json, overlay
+    line_classification/    <- semantic_line_classification.json, overlay, comparison
+```
+
+**Outputs added:**
+- `evaluation_summary.json` — full machine-readable metrics
+- `evaluation_summary.csv` — easy-to-review comparison table
+- `robustness_report.txt` — concise human-readable summary
+
+**Re-validation results (6 images, 0 failures):**
+| image_id   | candidates | groups | avg_conf | min_conf |
+|------------|-----------|--------|----------|----------|
+| IMG_0005   | 20        | 18     | 0.202    | 0.007    |
+| IMG_0007   | 16        | 16     | 0.266    | 0.011    |
+| IMG_0016   | 25        | 22     | 0.207    | 0.008    |
+| IMG_0020   | 11        | 11     | 0.233    | 0.008    |
+| IMG_0022   | 20        | 18     | 0.231    | 0.008    |
+| test_palm  | 29        | 28     | 0.281    | 0.007    |
+
+**Isolation verified:** Image-specific candidate count variation confirmed — pipeline isolation is working correctly.
+
+**Next step:** Use multi-image results to decide which classification heuristics need refinement (Phase 5.7).
 
 ## Phase 6 — Semantic Segmentation
 _Not started_

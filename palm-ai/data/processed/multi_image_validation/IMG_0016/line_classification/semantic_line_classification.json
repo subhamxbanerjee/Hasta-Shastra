@@ -1,0 +1,335 @@
+[
+  {
+    "id": 0,
+    "class": "Unknown",
+    "confidence": 0.259,
+    "component_ids": [
+      0
+    ],
+    "centroid": {
+      "x": 340.9117736816406,
+      "y": 183.08824157714844
+    },
+    "length": 65.79898953437805,
+    "orientation": 19.206041255994386,
+    "curvature": 0.5061460694479384
+  },
+  {
+    "id": 1,
+    "class": "Unknown",
+    "confidence": 0.264,
+    "component_ids": [
+      1
+    ],
+    "centroid": {
+      "x": 241.27272033691406,
+      "y": 90.92562103271484
+    },
+    "length": 102.42640614509583,
+    "orientation": 102.41312521587827,
+    "curvature": 0.41300970053260533
+  },
+  {
+    "id": 2,
+    "class": "Unknown",
+    "confidence": 0.265,
+    "component_ids": [
+      2
+    ],
+    "centroid": {
+      "x": 265.8999938964844,
+      "y": 109.68333435058594
+    },
+    "length": 111.63960909843445,
+    "orientation": 91.88363901327008,
+    "curvature": 0.406701671008134
+  },
+  {
+    "id": 3,
+    "class": "Unknown",
+    "confidence": 0.266,
+    "component_ids": [
+      4
+    ],
+    "centroid": {
+      "x": 343.68182373046875,
+      "y": 75.90908813476562
+    },
+    "length": 117.78174448013306,
+    "orientation": 17.946276244502986,
+    "curvature": 0.42907739180712445
+  },
+  {
+    "id": 4,
+    "class": "Unknown",
+    "confidence": 0.268,
+    "component_ids": [
+      5
+    ],
+    "centroid": {
+      "x": 352.5294189453125,
+      "y": 102.4117660522461
+    },
+    "length": 133.78174436092377,
+    "orientation": 19.829573399560456,
+    "curvature": 0.35438872584512593
+  },
+  {
+    "id": 5,
+    "class": "Unknown",
+    "confidence": 0.256,
+    "component_ids": [
+      6
+    ],
+    "centroid": {
+      "x": 37.09090805053711,
+      "y": 157.68182373046875
+    },
+    "length": 46.041630148887634,
+    "orientation": 104.60948723980968,
+    "curvature": 0.4364135517770055
+  },
+  {
+    "id": 6,
+    "class": "Unknown",
+    "confidence": 0.281,
+    "component_ids": [
+      7,
+      8
+    ],
+    "centroid": {
+      "x": 425.5,
+      "y": 132.05999755859375
+    },
+    "length": 229.42135512828827,
+    "orientation": 94.99069954876828,
+    "curvature": 0.4194135207237194
+  },
+  {
+    "id": 7,
+    "class": "FateLine",
+    "confidence": 0.08,
+    "component_ids": [
+      9,
+      12
+    ],
+    "centroid": {
+      "x": 433.80902099609375,
+      "y": 262.2970886230469
+    },
+    "length": 599.4701229333878,
+    "orientation": 108.25237201223614,
+    "curvature": 0.33821124848647677
+  },
+  {
+    "id": 8,
+    "class": "Unknown",
+    "confidence": 0.258,
+    "component_ids": [
+      10
+    ],
+    "centroid": {
+      "x": 438.6875,
+      "y": 257.6041564941406
+    },
+    "length": 60.76955199241638,
+    "orientation": 162.35753292682378,
+    "curvature": 0.5787576325110357
+  },
+  {
+    "id": 9,
+    "class": "Unknown",
+    "confidence": 0.297,
+    "component_ids": [
+      11
+    ],
+    "centroid": {
+      "x": 118.60526275634766,
+      "y": 285.9868469238281
+    },
+    "length": 349.16146767139435,
+    "orientation": 168.562747631431,
+    "curvature": 0.4453590143189226
+  },
+  {
+    "id": 10,
+    "class": "FateLine",
+    "confidence": 0.008,
+    "component_ids": [
+      13
+    ],
+    "centroid": {
+      "x": 456.3999938964844,
+      "y": 294.1000061035156
+    },
+    "length": 61.35533845424652,
+    "orientation": 172.41095530895004,
+    "curvature": 0.5552519266877339
+  },
+  {
+    "id": 11,
+    "class": "FateLine",
+    "confidence": 0.017,
+    "component_ids": [
+      14
+    ],
+    "centroid": {
+      "x": 462.3777770996094,
+      "y": 326.5111083984375
+    },
+    "length": 127.88224983215332,
+    "orientation": 157.892650654406,
+    "curvature": 0.5560097794614937
+  },
+  {
+    "id": 12,
+    "class": "Unknown",
+    "confidence": 0.261,
+    "component_ids": [
+      15
+    ],
+    "centroid": {
+      "x": 130.31817626953125,
+      "y": 344.9886474609375
+    },
+    "length": 78.91168713569641,
+    "orientation": 22.44510141372229,
+    "curvature": 0.400566937741774
+  },
+  {
+    "id": 13,
+    "class": "HeartLine",
+    "confidence": 0.094,
+    "component_ids": [
+      18
+    ],
+    "centroid": {
+      "x": 267.0434875488281,
+      "y": 368.521728515625
+    },
+    "length": 706.3818098306656,
+    "orientation": 179.59091652892363,
+    "curvature": 0.3055284643274815
+  },
+  {
+    "id": 14,
+    "class": "HeartLine",
+    "confidence": 0.182,
+    "component_ids": [
+      19
+    ],
+    "centroid": {
+      "x": 187.28048706054688,
+      "y": 371.5853576660156
+    },
+    "length": 55.012192487716675,
+    "orientation": 0.49697343065992755,
+    "curvature": 0.7384186811986309
+  },
+  {
+    "id": 15,
+    "class": "HeartLine",
+    "confidence": 0.02,
+    "component_ids": [
+      21
+    ],
+    "centroid": {
+      "x": 283.54217529296875,
+      "y": 378.3735046386719
+    },
+    "length": 149.92387914657593,
+    "orientation": 152.41838279832885,
+    "curvature": 0.3474481548067851
+  },
+  {
+    "id": 16,
+    "class": "Unknown",
+    "confidence": 0.259,
+    "component_ids": [
+      22
+    ],
+    "centroid": {
+      "x": 488.0555419921875,
+      "y": 373.5
+    },
+    "length": 67.35533833503723,
+    "orientation": 88.09367348246704,
+    "curvature": 0.5201184387252417
+  },
+  {
+    "id": 17,
+    "class": "Unknown",
+    "confidence": 0.287,
+    "component_ids": [
+      24
+    ],
+    "centroid": {
+      "x": 91.28497314453125,
+      "y": 368.08807373046875
+    },
+    "length": 276.32590091228485,
+    "orientation": 102.6749604881639,
+    "curvature": 0.39616616561450707
+  },
+  {
+    "id": 18,
+    "class": "HeartLine",
+    "confidence": 0.315,
+    "component_ids": [
+      26
+    ],
+    "centroid": {
+      "x": 189.63999938964844,
+      "y": 395.4666748046875
+    },
+    "length": 54.183765292167664,
+    "orientation": 8.452470228497544,
+    "curvature": 0.7796225109718727
+  },
+  {
+    "id": 19,
+    "class": "LifeLine",
+    "confidence": 0.093,
+    "component_ids": [
+      29,
+      33
+    ],
+    "centroid": {
+      "x": 60.044776916503906,
+      "y": 381.6119384765625
+    },
+    "length": 504.37466990947723,
+    "orientation": 41.52414053986385,
+    "curvature": 0.34144088025925046
+  },
+  {
+    "id": 20,
+    "class": "LifeLine",
+    "confidence": 0.01,
+    "component_ids": [
+      30
+    ],
+    "centroid": {
+      "x": 99.09375,
+      "y": 437.421875
+    },
+    "length": 76.56854152679443,
+    "orientation": 174.3664029400822,
+    "curvature": 0.432590627650869
+  },
+  {
+    "id": 21,
+    "class": "LifeLine",
+    "confidence": 0.51,
+    "component_ids": [
+      32
+    ],
+    "centroid": {
+      "x": 61.5,
+      "y": 453.6041564941406
+    },
+    "length": 73.25483322143555,
+    "orientation": 102.84666285570788,
+    "curvature": 0.5549608535338992
+  }
+]
